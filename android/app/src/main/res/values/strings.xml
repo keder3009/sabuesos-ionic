@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">sabuesos</string>
+    <string name="title_activity_main">sabuesos</string>
+    <string name="package_name">co.com.sabuesos.newapp</string>
+    <string name="custom_url_scheme">co.com.sabuesos.newapp</string>
+    <string name="server_client_id">909651562334-o2jsv9m3sdpkq11ng034bfsh2m7b5fb1.apps.googleusercontent.com</string>
+    <string name="facebook_app_id">998695285332737</string>
+    <string name="fb_login_protocol_scheme">fb998695285332737</string>
+    <string name="facebook_client_token">cf4f302d6a943d63e532e3cb6a02de5c</string>
+    <string name="admob_app_id">ca-app-pub-9998601387563157~2848798267</string>
+</resources>

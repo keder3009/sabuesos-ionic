@@ -11,5 +11,3 @@ package-lock.json
 .angular/
 www/
 node_modules/
-android/
-ios/
