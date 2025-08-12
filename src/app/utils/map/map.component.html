@@ -1,0 +1,16 @@
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col size=12>
+        <div style="position: relative">
+          <ion-searchbar debounce=500 (ionChange)="search($event)" [value]="selectedAddress" *ngIf="searchField">
+          </ion-searchbar>
+          <div id='mapbox' #mapa style="width:100%; height: 950px;"></div>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-button color="tertiary" expand="block" (click)="onSubmit()" *ngIf="hasButton">
+    <ion-text color="primary"><strong>Seleccionar</strong></ion-text>
+  </ion-button>
+</ion-content>

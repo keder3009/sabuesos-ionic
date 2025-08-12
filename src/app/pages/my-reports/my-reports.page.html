@@ -1,0 +1,81 @@
+<app-header></app-header>
+<ion-content [fullscreen]="true">
+  <ion-item class="mb-1 w-100">
+    <app-slides [option]="'advertising'"></app-slides>
+  </ion-item>
+  <div class="center-text">
+    <h1><strong>Mis Reportes</strong></h1>
+  </div>
+  <ion-segment scrollable (ionChange)="segmentChanged($event)" value="0" class="mb-0-5 icon-red" mode="ios">
+    <ion-segment-button value="0">
+      <ion-icon name="scan-circle-outline"></ion-icon>
+      <ion-label>Extraviados</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="1">
+      <ion-icon name="locate-outline"></ion-icon>
+      <ion-label>Encontrados</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="2">
+      <ion-icon name="paw-outline"></ion-icon>
+      <ion-label>Adopciones</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+  <ion-refresher slot="fixed" (ionRefresh)="handleRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <ion-list>
+    <ng-container *ngFor="let item of reportsList">
+      <!-- 🔹 Si es un reporte normal -->
+      <ion-item-sliding *ngIf="!item.isAd">
+        <ion-item-options side="start">
+          <ion-item-option (click)="favorite(item)">
+            <ion-icon slot="icon-only" name="heart-outline"></ion-icon>
+          </ion-item-option>
+          <ion-item-option color="danger" (click)="share(item)">
+            <ion-icon slot="icon-only" name="share-outline"></ion-icon>
+          </ion-item-option>
+        </ion-item-options>
+        <ion-item>
+          <ion-grid fixed>
+            <ion-row>
+              <ion-col size="12" size-lg="6" size-md="6" size-sm="12">
+                <app-full-card [data]="item"></app-full-card>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-item>
+        <ion-item-options side="end">
+          <ion-item-option color="danger" (click)="delete(item)">
+            <ion-icon slot="icon-only" name="trash-outline"></ion-icon>
+          </ion-item-option>
+          <ion-item-option (click)="update(item)">
+            <ion-icon slot="icon-only" name="brush-outline"></ion-icon>
+          </ion-item-option>
+        </ion-item-options>
+      </ion-item-sliding>
+  
+      <!-- ✅ Si es un anuncio nativo -->
+      <ion-item *ngIf="item.isAd">
+        <ion-grid>
+          <ion-row>
+            <ion-col size="12">
+              <ion-card>
+                <ion-img [src]="item.cover"></ion-img>
+                <ion-card-header>
+                  <ion-card-subtitle>{{item.advertiser}}</ion-card-subtitle>
+                  <ion-card-title>{{item.headline}}</ion-card-title>
+                </ion-card-header>
+                <ion-card-content>
+                  {{item.body}}
+                </ion-card-content>
+                <ion-button expand="block" (click)="openAd(item)">
+                  {{item.cta}}
+                </ion-button>
+              </ion-card>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-item>
+    </ng-container>
+  </ion-list>
+</ion-content>

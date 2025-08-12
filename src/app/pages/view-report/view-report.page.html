@@ -1,0 +1,77 @@
+<app-header [routePrevious]="routePrevious"></app-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense"></ion-header>
+  
+  <ion-list *ngIf="reportInfo">
+    <ion-item class="view-report-slides">
+      <app-slides [option]="'advertising'"></app-slides>
+    </ion-item>
+
+    <ion-item-sliding>
+      <ion-item-options side="start">
+        <ion-item-option (click)="favorite(reportInfo)">
+          <ion-icon slot="icon-only" name="heart-outline"></ion-icon>
+        </ion-item-option>
+        <ion-item-option color="danger" (click)="share(reportInfo)">
+          <ion-icon slot="icon-only" name="share-outline"></ion-icon>
+        </ion-item-option>
+      </ion-item-options>
+
+      <ion-item>
+        <ion-card mode="ios" style="width: 100% !important;">
+          <div>
+            <app-slides [isSlide]="false" [option]="'view-report'" [slides]="reportInfo.filesUrl"
+              (touchstart)="$event.stopPropagation()"></app-slides>
+              <!-- <ion-img class="slide-image" [src]="reportInfo.filesUrl[0].url"></ion-img> -->
+          </div>
+          <ion-card-header>
+            <div class="center-text">
+              <h1><strong>{{reportInfo?.pets?.name}}</strong></h1>
+            </div>
+          </ion-card-header>
+          <ion-card-content>
+            <p class="mb-1">
+              <ion-text>Descripción: {{reportInfo?.description}}</ion-text>
+            </p>
+
+            <p class="flex-row-end">
+              <ion-text>Tipo de mascota: {{reportInfo?.pets?.typePet >= 0 ? getTypePet(reportInfo?.pets?.typePet) : 'NA'}}</ion-text>
+            </p>
+
+            <p class="flex-row-end">
+              <ion-text>Raza: {{reportInfo?.pets?.race ? reportInfo?.pets?.race : 'NA'}}</ion-text>
+            </p>
+
+            <p class="flex-row-end">
+              <ng-container *ngIf="reportInfo.users; else isEntity">
+                <ion-text>Reportado por: {{reportInfo?.users?.name ? reportInfo?.users?.name : 'NA'}}</ion-text>
+              </ng-container>
+              <ng-template #isEntity>
+                <ion-text>Reportado por: {{reportInfo?.entities?.name ? reportInfo?.entities?.name : 'NA'}}</ion-text>
+              </ng-template>
+            </p>
+
+            <p class="flex-row-end">
+              <ion-text>Departamento: {{reportInfo?.nativeGeocoderResult?.administrativeArea ? reportInfo?.nativeGeocoderResult?.administrativeArea : 'NA'}}</ion-text>
+            </p>
+
+            <p class="flex-row-end">
+              <ion-text>Ciudad: {{reportInfo?.nativeGeocoderResult?.locality ? reportInfo?.nativeGeocoderResult?.locality : 'NA'}}</ion-text>
+            </p>
+
+            <p class="flex-row-end">
+              <ion-text>Barrio: {{reportInfo?.nativeGeocoderResult?.subLocality ? reportInfo?.nativeGeocoderResult?.subLocality : 'NA'}}</ion-text>
+            </p>
+
+            <p class="flex-row-end">
+              <ion-text>Estado: {{reportInfo?.typePost === 0 ? 'Extraviado' : reportInfo?.typePost === 1 ? 'Encontrado' : 'Adopción'}}</ion-text>
+            </p>
+
+            <ion-button expand="block" color="primary" (click)="goToChat()" *ngIf="!hiddenMessageOption">MENSAJE</ion-button>
+          </ion-card-content>
+        </ion-card>
+      </ion-item>
+    </ion-item-sliding>
+  </ion-list>
+</ion-content>

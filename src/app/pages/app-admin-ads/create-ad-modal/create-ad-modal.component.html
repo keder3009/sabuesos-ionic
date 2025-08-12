@@ -1,0 +1,132 @@
+<!-- src/app/pages/app-admin-ads/create-ad-modal/create-ad-modal.component.html -->
+<ion-header>
+  <ion-toolbar>
+    <ion-title>{{ isEdit ? 'Editar' : 'Crear' }} Publicidad</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="dismiss()" fill="clear">
+        <ion-icon name="close" slot="icon-only"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="adForm" (ngSubmit)="onSubmit()">
+    <div class="form-container">
+
+      <!-- Archivo multimedia -->
+      <div class="media-section">
+        <h3>Archivo Multimedia</h3>
+        <ion-item>
+          <ion-select label="Tipo" color="primary" formControlName="mediaType" placeholder="Selecciona tipo"
+            (ionChange)="onMediaTypeChange()">
+            <ion-select-option *ngFor="let option of mediaTypeOptions" [value]="option.value">{{ option.label
+              }}</ion-select-option>
+          </ion-select>
+        </ion-item>
+
+        <div class="media-upload-container" *ngIf="!mediaPreview">
+          <input type="file" #fileInput [accept]="acceptedFileTypes" (change)="onFileSelected($event)"
+            style="display: none;">
+
+          <div class="upload-placeholder" (click)="fileInput.click()">
+            <ion-icon name="cloud-upload-outline" size="large"></ion-icon>
+            <p>Toca para seleccionar un archivo</p>
+            <small>{{ fileTypePlaceholder }}</small>
+          </div>
+        </div>
+
+        <div class="media-preview-container" *ngIf="mediaPreview">
+          <img *ngIf="adForm.get('mediaType')?.value === 'image'" [src]="mediaPreview" alt="Preview"
+            class="media-preview">
+          <video *ngIf="adForm.get('mediaType')?.value === 'video'" [src]="mediaPreview" class="media-preview" controls
+            muted>
+          </video>
+
+          <ion-button fill="clear" color="danger" class="change-media-btn" (click)="fileInput.click()">
+            <ion-icon name="create" slot="start"></ion-icon>
+            Cambiar archivo
+          </ion-button>
+          <input type="file" #fileInput [accept]="acceptedFileTypes" (change)="onFileSelected($event)"
+            style="display: none;">
+        </div>
+
+        <ion-progress-bar *ngIf="isUploading" [value]="uploadProgress / 100" color="primary">
+        </ion-progress-bar>
+        <ion-text *ngIf="isUploading" color="primary">
+          <small>Subiendo: {{ uploadProgress }}%</small>
+        </ion-text>
+      </div>
+
+      <div class="basic-info-section">
+        <h3>Información Básica</h3>
+        <ion-item>
+          <ion-select label="Tipo de publicidad *" color="primary" formControlName="type" placeholder="Selecciona tipo">
+            <ion-select-option *ngFor="let option of typeOptions" [value]="option.value">{{ option.label
+              }}</ion-select-option>
+          </ion-select>
+        </ion-item>
+        <ion-item>
+          <ion-input label="Título (opcional)" labelPlacement="floating" formControlName="title" formControlName="title"
+            placeholder="Título de la publicidad"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-textarea labelPlacement="floating" label="Descripción (opcional)" formControlName="description"
+            placeholder="Descripción de la publicidad" rows="3">
+          </ion-textarea>
+        </ion-item>
+
+        <ion-item>
+          <ion-input label="URL de destino (opcional)" labelPlacement="floating" formControlName="link"
+            placeholder="https://ejemplo.com" type="url">
+          </ion-input>
+        </ion-item>
+      </div>
+
+      <!-- Configuración -->
+      <div class="config-section">
+        <h3>Configuración</h3>
+
+        <ion-item>
+          <ion-input label="Order (opcional)" labelPlacement="floating" formControlName="order" type="number" min="1" max="100" placeholder="1"
+            [class.ion-invalid]="orderError" [class.ion-touched]="adForm.get('order')?.touched">
+          </ion-input>
+          <ion-note slot="error" *ngIf="orderError">{{ orderError }}</ion-note>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="stacked">Tiempo de espera (segundos) *</ion-label>
+          <ion-input formControlName="waitTime" type="number" min="0" max="60" placeholder="3"
+            [class.ion-invalid]="waitTimeError" [class.ion-touched]="adForm.get('waitTime')?.touched">
+          </ion-input>
+          <ion-note slot="error" *ngIf="waitTimeError">{{ waitTimeError }}</ion-note>
+          <ion-note>Tiempo antes de que el usuario pueda cerrar la publicidad</ion-note>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="stacked">Auto-cierre después de (segundos, opcional)</ion-label>
+          <ion-input formControlName="skipAfter" type="number" min="1" placeholder="10"
+            [class.ion-invalid]="skipAfterError" [class.ion-touched]="adForm.get('skipAfter')?.touched">
+          </ion-input>
+          <ion-note slot="error" *ngIf="skipAfterError">{{ skipAfterError }}</ion-note>
+          <ion-note>La publicidad se cerrará automáticamente después de este tiempo</ion-note>
+        </ion-item>
+
+        <ion-item>
+          <ion-label>Publicidad activa</ion-label>
+          <ion-toggle formControlName="active" slot="end"></ion-toggle>
+        </ion-item>
+      </div>
+    </div>
+  </form>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-button expand="block" type="submit" [disabled]="isSubmitDisabled" (click)="onSubmit()">
+      <ion-icon name="save" slot="start"></ion-icon>
+      {{ isEdit ? 'Actualizar' : 'Crear' }} Publicidad
+    </ion-button>
+  </ion-toolbar>
+</ion-footer>

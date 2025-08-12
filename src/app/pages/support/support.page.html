@@ -1,0 +1,18 @@
+<app-header></app-header>
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+  </ion-header>
+  <ion-img src="/assets/logo-sabuesos.png" class="logo"></ion-img>
+  <form class="form" [formGroup]="supportForm" (ngSubmit)="onSubmit()">
+    <ion-item>
+      <ion-text color="primary"><strong>Para sabuesos es muy importante conocer tu opinión y servirte en solucionar tus
+          inquietudes, dejanos un mensaje y pronto estaremos en contacto.</strong></ion-text>
+    </ion-item>
+    <ion-item  class="mb-2">
+      <ion-textarea rows="6" cols="34" labelPlacement="floating" formControlName="description" label="Descripción"></ion-textarea>
+    </ion-item>
+    <ion-button color="tertiary" expand="block" type="submit">
+      <ion-text color="primary"><strong>Enviar</strong></ion-text>
+    </ion-button>
+  </form>
+</ion-content>

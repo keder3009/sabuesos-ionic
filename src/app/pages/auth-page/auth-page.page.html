@@ -1,0 +1,24 @@
+<app-header></app-header>
+<ion-content [fullscreen]="true" class="auth-form">
+  <div class="logo-container">
+    <ion-img src="/assets/logo-sabuesos.png" class="logo"></ion-img>
+  </div>
+  <div class="content">
+    <app-auth></app-auth>
+    <div class="content-text">
+      <span>o</span>
+      <span (click)="goToRegister()" class="ion-margin-top text-register">Registrate con tu Correo</span>
+    </div>
+  </div>
+</ion-content>
+<!-- <ion-footer class="ion-no-border">
+  <ion-toolbar class="entity">
+    <a (click)="goToOrganizationForm()" class="small-text" color="primary">
+      <div class="entity">
+        Soy una fundación
+        o
+        corporación de rescate y me quiero registrar.
+      </div>
+    </a>
+  </ion-toolbar>
+</ion-footer> -->

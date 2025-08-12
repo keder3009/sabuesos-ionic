@@ -1,0 +1,48 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="end">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+  </ion-header>
+  <ion-img src="/assets/logo-sabuesos.png" class="logo"></ion-img>
+  <form #formulario="ngForm" class="form">
+    <ion-item>
+      <ion-text color="primary">Diligencia este formulario para que el centro de apdopción pueda comunicarse contigo.
+      </ion-text>
+    </ion-item>
+    <ion-item>
+      <ion-input label="Nombre y Apellidos" labelPlacement="floating" color="primary" type="text"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input label="Edad" labelPlacement="floating" color="primary" type="number"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input label="Ocupación" labelPlacement="floating" color="primary" type="text"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input label="Dirección" labelPlacement="floating" color="primary" type="text"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input label="Email" labelPlacement="floating" color="primary" type="email"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input label="Teléfono" labelPlacement="floating" color="primary" type="number"></ion-input>
+    </ion-item>
+    <!-- Textarea that clears the value on edit -->
+    <ion-item class="mb-2">
+      <ion-textarea label="¿Por qué deseas adoptar?" labelPlacement="floating" rows="4" cols="20" clearInput="true"></ion-textarea>
+    </ion-item>
+    <ion-item>
+      <a class="small-text" color="primary" slot="end">Descarga
+        el formulario del centro de adopción aquí</a>
+    </ion-item>
+    <ion-button color="tertiary" expand="block" (click)="onSubmit()">
+      <ion-text color="primary"><strong>Enviar</strong></ion-text>
+    </ion-button>
+  </form>
+</ion-content>

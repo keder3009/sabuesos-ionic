@@ -1,0 +1,310 @@
+<!-- [routePrevious]="routePrevious" -->
+<app-header></app-header>
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+  </ion-header>
+  <ion-img src="/assets/logo-sabuesos.png" class="logo"></ion-img>
+  <form class="form" [formGroup]="registerForm" (ngSubmit)="register()">
+    <ion-item>
+      <ion-input label="Nombre" labelPlacement="floating" clearInput="true" type="text" formControlName="name"
+        required></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input label="Correo" labelPlacement="floating" clearInput="true" type="text" formControlName="email"
+        required></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input label="Contraseña" labelPlacement="floating" clearInput="true" type="password"
+        formControlName="password" required></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input label="Confirme su contraseña" labelPlacement="floating" clearInput="true" type="password"
+        formControlName="retypePassword" required></ion-input>
+    </ion-item>
+    <ion-item class="ion-margin-top" (click)="checkboxClick()">
+      <ion-checkbox checked justify="space-between">Autorizo el uso de información</ion-checkbox>
+    </ion-item>
+    <ion-item>
+      <a (click)="setOpen(true)" class="small-text" color="primary" slot="end">Ver política información</a>
+    </ion-item>
+    <ion-modal [isOpen]="isModalOpen">
+      <ng-template>
+        <div class="ion-padding" style="display: flex; justify-content: space-between; align-items: center;">
+          <span style="font-size: 16px; font-weight: bold;">Tratamiento de datos</span>
+          <ion-button (click)="setOpen(false)">Cerrar</ion-button>
+        </div>
+        <ion-content class="ion-padding">
+          <p class="ion-text-justify primary">
+            AUTORIZACIÓN DE TRATAMIENTO DE DATOS PERSONALES
+            SABUESOS APP S.A.S.
+            NIT. 9 0 1 5 8 0 5 0 0– 7
+            De conformidad con lo dispuesto en la Ley Estatutaria 1581 de 2012 y su Decreto reglamentario 1377 de 2013,
+            SABUESOS APP S.A.S. (en adelante SABUESOS), identificada con NIT Nº. 9 0 1 5 8 0 5 0 0– 7 y ubicada en la
+            Calle 64 BD # 102F - 105 de la ciudad de Medellín, le informa que la recolección de sus datos personales se
+            realizará de acuerdo con lo señalado en nuestra Política de Tratamiento de Datos.
+            Al proporcionarnos sus datos personales, se le informa a usted en calidad de titular, que sus datos serán
+            utilizados para los siguientes fines:
+            • Gestionar todas las acciones tendientes a tramitar los procesos de reportes de animales de compañía
+            perdidos y encontrados, así como los procesos de adopción.
+            • Gestionar los procesos de compra de servicios y entrega de productos adquiridos por medio de la
+            plataforma, así como su envío.
+            • Gestión a nivel interno de Peticiones, Quejas y Reclamos (“PQR”) y procesos propios de servicio al cliente
+            de la compañía.
+            • Brindarle información sobre las mascotas que se encuentran extraviadas, fueron encontrados o están en
+            proceso de adopción. Así como sobre los productos y servicios ofertados.
+            • Implementar estrategias comerciales adaptadas a los diversos tipos de usuarios, así como hacer seguimiento
+            de los comportamientos de compra con el fin de prestar un servicio personalizado y generar una mejor
+            experiencia.
+            • Contactar a los usuarios para realizar acciones de verificación de compras y autenticación de identidad, a
+            efectos de garantizar la seguridad de las transacciones realizadas.
+            El tratamiento al que pueden ser sometidos sus datos personales incluye el procesamiento, recolección,
+            almacenamiento, uso, circulación, supresión, actualización, transmisión y/o transferencia (entendidas éstas
+            como la posibilidad de compartir información con terceros los datos suministrados).
+            Los datos recolectados y su procesamiento pueden incluir o concluir información sensible, sobre la cual no
+            está obligado a autorizar el tratamiento, pero autorizados serán utilizados para las finalidades
+            anteriormente descritas.
+            SABUESOS podría compartir su información personal privada con terceros y aliados comerciales, los cuales en
+            razón de nuestro encargo realizarán gestiones para garantizar la continuidad de nuestra operación. Tenga en
+            cuenta que éstos terceros pueden estar en Colombia y/u otros países que eventualmente pudieran considerarse
+            como destinos o puertos no seguros de acuerdo lo señalado por la Autoridad Colombiana de Protección de
+            Datos. No obstante, SABUESOS pondrá todo su empeño para garantizar que el tercero al cual pudiere
+            compartírsele sus datos personales cuente con los procesos y procedimientos que garanticen la integridad y
+            confidencialidad de sus datos personales.
+            SABUESOS utiliza cookies las cuales son pequeños archivos de texto que identifican a su computadora en
+            nuestro servidor como un usuario único. Se entiende aceptado el uso de cookies al navegar en el sitio web, y
+            en todo caso a través de este documento nos autoriza expresamente para el uso de cookies.
+            Solo utilizamos las cookies para tratar datos personales cuando se ha aceptado su uso, y le indicamos que
+            los navegadores pueden ser configurados para no aceptar cookies, pero esto podría restringir el uso de la
+            página web y limitar su experiencia en esta. Por ejemplo, las cookies se pueden utilizar para reconocer la
+            dirección de protocolo de Internet, lo que le ahorrará tiempo a quienes se encuentran en la página web o
+            quieren entrar en el futuro. Sin embargo, nos gustaría señalar que el uso de la funcionalidad “Carrito” en
+            el Sitio y la de aceptar una orden sólo es posible con la activación de las cookies.
+            En calidad de titular tiene derecho a conocer, actualizar, rectificar, revocar la autorización y suprimirla,
+            así como de la posibilidad de acceder en cualquier momento a los datos suministrados y el procedimiento para
+            solicitar su corrección, actualización o supresión de las bases de datos de SABUESOS, los puede ejercer
+            observando los procesos de consultas y reclamos contenidos en la Política de Tratamiento del Dato de
+            SABUESOS.
+            Cualquier inquietud, consulta o reclamo por favor contáctenos en info&#64;sabuesos.co
+
+            POLÍTICA DE TRATAMIENTO DE DATOS PERSONALES SABUESOS APP S.A.S. NIT. 901.580.500-7
+            Con el fin de dar cumplimiento a la ley 1581 de 2012, sus decretos reglamentarios, y toda norma posterior
+            que las modifique o complemente la sociedad SABUESOS APP S.A.S., identificada con NIT. 901.580.500-7, con
+            domicilio en la Carrera 68G # 74B - 56 de la ciudad de Medellín, cuyo teléfono es 3002329734, y cuyo correo
+            electrónico de contacto es info&#64;sabuesos.co adopta la siguiente política de tratamiento de datos
+            personales (en adelante La Política).
+            1. DEFINICIONES: Para la implementación de La Política, se tendrán en cuenta las siguientes definiciones:
+            Autorización: Consentimiento previo, expreso e informado del titular para llevar a cabo el tratamiento de
+            datos personales. Aviso de privacidad: Comunicación verbal o escrita generada por el responsable, dirigida
+            al titular para el tratamiento de sus datos personales, mediante la cual se le informa acerca de la
+            existencia de las políticas de tratamiento de información que le serán aplicables, la forma de acceder a las
+            mismas y las finalidades del tratamiento que se pretende dar a los datos personales. Base de datos: Conjunto
+            organizado de datos personales que sea objeto de tratamiento. Causahabiente: Persona que ha sucedido a otra
+            por causa del fallecimiento de esta. (Heredero). Compañía o Empresa: Se refiere a la sociedad SABUESOS APP
+            S.A.S.
+            Dato personal: Cualquier información vinculada o que pueda asociarse a una o varias personas naturales
+            determinadas o determinables.
+            Dato público: Es el dato que no sea semiprivado, privado o sensible. Son considerados datos públicos, entre
+            otros, los datos relativos al estado civil de las personas, a su profesión u oficio y a su calidad de
+            comerciante o de servidor público. Por su naturaleza, los datos públicos pueden estar contenidos, entre
+            otros, en registros públicos, documentos públicos, gacetas y boletines oficiales y sentencias judiciales
+            debidamente ejecutoriadas que no estén sometidas a reserva.
+            Datos sensibles: Se entiende por datos sensibles aquellos que afectan la intimidad del titular o cuyo uso
+            indebido puede generar su discriminación, tales como que revelen el origen racial o étnico, la orientación
+            política, las convicciones religiosas o filosóficas, la pertenencia a sindicatos, organizaciones sociales,
+            de derechos humanos o que promueva intereses de cualquier partido político o que garanticen los derechos y
+            garantías de partidos políticos de oposición, así como los datos relativos a la salud, a la vida sexual, y
+            los datos biométricos.
+            Encargado del tratamiento: persona natural o jurídica, pública o privada, que por sí misma o en asocio con
+            otros, realice el tratamiento de datos personales por cuenta del responsable del tratamiento.
+            Responsable del tratamiento: Persona natural o jurídica, pública o privada, que por sí misma o en asocio con
+            otros, decida sobre la base de datos y/o el tratamiento de los datos.
+            Titular: Persona natural cuyos datos personales sean objeto de tratamiento.
+            Tratamiento: Cualquier operación o conjunto de operaciones sobre datos personales, tales como la
+            recolección, almacenamiento, uso, circulación o supresión. Transferencia: La transferencia de datos tiene
+            lugar cuando el responsable y/o encargado del tratamiento de datos personales, ubicado en Colombia o en el
+            exterior, envía la información o los datos personales a un receptor, que a su vez es responsable del
+            tratamiento y se encuentra fuera del país. Transmisión: Tratamiento de datos personales que implica la
+            comunicación de los mismos dentro o fuera del territorio de la república de Colombia cuando tenga por objeto
+            la realización de un tratamiento por el encargado por cuenta del responsable
+            2. OBJETIVO DE LA POLÍTICA: Establecer los criterios para la recolección, almacenamiento, uso, circulación y
+            supresión de los datos personales tratados por SABUESOS APP S.A.S.
+            3. ALCANCE: La Política aplica para toda la información personal registrada en las bases de datos de
+            SABUESOS APP S.A.S., quien actúa en calidad de responsable del tratamiento de los datos personales.
+            4. OBLIGACIONES: La Política es de obligatorio y estricto cumplimiento para SABUESOS APP S.A.S. y todos sus
+            empleados.
+            5. RESPONSABLE DEL TRATAMIENTO: SABUESOS APP S.A.S., sociedad comercial legalmente constituida, identificada
+            con el NIT. 901.580.500-7, con domicilio principal en la Calle 64BD #102F-105 de Medellín, República de
+            Colombia, cuyo teléfono es 3002329734, y cuyo correo electrónico de contacto es info&#64;sabuesos.co
+            6. TRATAMIENTO Y FINALIDAD: SABUESOS APP S.A.S. realizará el almacenamiento, uso, procesamiento,
+            circulación, y en general el tratamiento a la información personal con las siguientes finalidades:
+            6.1. Respecto de los datos de clientes y consumidores:
+            ● Proveer servicios y/o productos requeridos por nuestros clientes y/o anunciados a ellos. ● Informar sobre
+            nuevos productos o servicios que estén relacionados o no, con el contratado o adquirido por el Titular. ●
+            Dar cumplimiento a obligaciones contraídas con el Titular. ● Efectuar las gestiones pertinentes para el
+            desarrollo del objeto social de la compañía en lo que tiene que ver con el cumplimiento del objeto del
+            contrato celebrado con el Titular de la información. ● Informar sobre cambios en productos o servicios. ●
+            Evaluar la calidad de los productos o servicios. ● Desarrollar actividades publicitarias, de mercadeo o
+            promocionales. ● Realizar estudios internos sobre el cumplimiento de las relaciones comerciales y estudios
+            de mercado a todo nivel. ● Permitir la participación de los titulares de información en programas de lealtad
+            con beneficios, actividades de mercadeo y promocionales (sorteos). ● Contactar al titular por vía telefónica
+            (a través de llamadas y/o mensajes de texto como SMS y/o MMS), correo físico o electrónico , o medios
+            digitales (como aplicaciones de mensajería instantánea y redes sociales, tales como Facebook, Instagram y
+            WhatsApp, etc.) para: (i) enviar información comercial, publicitaria o promocional sobre los productos y/o
+            servicios, eventos y/o promociones de tipo comercial o no de estas, con el fin de impulsar, invitar,
+            dirigir, ejecutar, informar y de manera general, llevar a cabo campañas, promociones o concursos de carácter
+            comercial o publicitario; (ii) realizar encuestas de satisfacción; (iii) enviar información sobre los
+            productos o servicios requeridos y su estado; y (iv) en general para todas las finalidades establecidas en
+            estas políticas. ● Suministrar información de contacto a la fuerza comercial y/o red de distribución,
+            telemercadeo, investigación de mercados y cualquier tercero con el cual SABUESOS APP S.A.S. tenga un vínculo
+            contractual para el desarrollo de actividades de ese tipo (investigación de mercados y telemercadeo, etc.)
+            para la ejecución de las mismas. ● Transferir y/o transmitir los datos personales recolectados con terceros
+            que tengan la calidad de aliados comerciales y/o de negocio para puedan ofrecer productos y/o servicios que
+            permitan mejorar la oferta de valor destinada a los clientes de SABUESOS APP S.A.S., de acuerdo con las
+            finalidades establecidas en esta política. ● Enviar información de medios de pago electrónicos a plataformas
+            de pago digitales para procesar pagos y compras. ● Facilitar la identificación y prestar una experiencia de
+            servicio completa, por ejemplo, utilizando cookies. ● Realizar la gestión contable, fiscal y administrativa
+            de clientes. ● Verificar antecedentes comerciales y de reputación de los clientes. ● Gestionar actividades
+            de comunicación y fidelización de clientes, así como la atención oportuna de todas las peticiones, quejas,
+            reclamos y sugerencias (PQRS). ● Responder requerimientos legales de entidades administrativas y judiciales.
+            ● Consultar información del titular en centrales de riesgo. ● Consultar o recibir información, vía contratos
+            transmisión o transferencia, que se encuentra contenida en bases de datos de terceros para completar o
+            actualizar los datos personales de los titulares.
+            6.2. Respecto de los datos de proveedores de bienes y servicios:
+            ● Obtener servicios y bienes. ● Realizar la gestión contable, fiscal y administrativa de proveedores. ●
+            Verificar antecedentes comerciales, de reputación y eventuales riesgos financieros, y de relacionamientos
+            asociados al lavado de activos y financiación del terrorismo. ● Formalizar el relacionamiento contractual
+            con el proveedor. ● En general todas aquellas necesarias para la materialización y gestión de la relación
+            contractual de la empresa con el titular y de futuras relaciones contractuales.
+            6.3. Respecto de los datos asociados a la administración del talento humano:
+            ● En el marco de convocatorias a participar en cargos o posiciones, como: evaluar el perfil laboral de los
+            aspirantes, verificar antecedentes y entorno del aspirante, y gestionar afiliación o reporte de novedades
+            asociadas al sistema general de seguridad social y demás registros obligatorios relacionados con
+            prestaciones sociales. ● Efectuar gestión de recursos humanos y de colaboradores, como, sin limitarse a:
+            registro en los sistemas informáticos, gestión del control de horario y la ubicación espacial en el horario
+            de trabajo, formación de personal, gestión de liquidación y pago de nómina, gestión de personal, gestión de
+            trabajo temporal, prestaciones sociales, prevención de riesgos laborales, promoción y gestión de empleo,
+            promoción y selección de personal, y promoción del desarrollo de actividades de bienestar y desarrollo
+            integral del trabajador y su entorno laboral y familiar. ● Ofrecer beneficios y auxilios extralegales a los
+            empleados y a sus familias. ● Gestionar todo lo relacionado con acuerdos, compromisos y obligaciones
+            derivados de sindicatos, pactos o negociaciones colectivas. ● Gestionar los procedimientos de desvinculación
+            o jubilación laboral, así como el cumplimiento de las obligaciones económicas correspondientes. ● Todas las
+            demás gestiones requeridas para el cumplimiento de las obligaciones, derechos y garantías a favor de
+            empleados que están dispuestos en la ley, pacto colectivo, convención colectiva y respectivos contratos de
+            trabajo. ● Gestión de salud, sanidad y salud ocupacional, sin limitarse a, como: control sanitario en las
+            instalaciones de la compañía, exámenes de ingreso y de egreso de empleados, y demás exámenes establecidos
+            por las normas, reglamentos internos de trabajo, pactos o convenciones colectivas de trabajo. ● Informar a
+            terceros sobre la realización de funciones laborales. ● Efectuar controles de acceso y verificación de
+            identidad en las oficinas de la compañía. ● Garantizar la seguridad a través del sistema de videovigilancia.
+            ● En general todas aquellas necesarias para la materialización y gestión de la relación contractual de la
+            empresa con el titular y de futuras relaciones contractuales.
+            6.4. Respecto de los datos relacionados con la seguridad y ética corporativa (incluidos datos sensibles como
+            datos biométricos):
+            ● Gestionar la seguridad de las instalaciones, perímetro de la compañía y proteger la integridad de las
+            personas. ● Realizar el control de acceso a los edificios. ● Verificar, controlar y monitorear el desarrollo
+            de los procesos, actividades y productos conforme a los lineamientos y objetivos corporativos y en función
+            del control y aseguramiento de calidad. ● Gestionar el desarrollo de acciones o actuaciones
+            jurisdiccionales, disciplinarias, administrativas o extraprocesales.
+            Parágrafo. El tratamiento que realizará SABUESOS APP S.A.S. con la información personal consistirá en la
+            recolección, almacenamiento, uso, y circulación de los datos para las finalidades arriba enumeradas. Además,
+            podrá transmitir dichos datos a terceros en Colombia o en el extranjero para que realicen tratamiento de
+            estos por cuenta de SABUESOS APP S.A.S. para el desarrollo de las finalidades arriba enunciadas. También
+            podrá enviar los datos a empresas matrices, subsidiarias, o vinculadas de SABUESOS APP S.A.S., en Colombia y
+            en el extranjero, o con aliados comerciales para que traten la información con las mismas finalidades para
+            las cuales fueron recolectadas.
+            7. USO DE COOKIES. Las cookies son pequeños archivos de texto que identifican a su computadora en nuestro
+            servidor como un usuario único. Se entiende aceptado el uso de cookies al navegar en el sitio web. Solo
+            utilizamos las cookies para tratar datos personales cuando se ha aceptado su uso, y le indicamos que los
+            navegadores pueden ser configurados para no aceptar cookies, pero esto podría restringir el uso de la página
+            web y limitar su experiencia en esta. Por ejemplo, las cookies se pueden utilizar para reconocer la
+            dirección de protocolo de Internet, lo que le ahorrará tiempo a quienes se encuentran en la página web o
+            quieren entrar en el futuro. Sin embargo, nos gustaría señalar que el uso de la funcionalidad “Carrito” en
+            el Sitio y la de aceptar una orden sólo es posible con la activación de las cookies.
+            8. DATOS Y DERECHOS DE NIÑOS, NIÑAS Y ADOLESCENTES: Conforme con la normativa de protección de datos
+            personales, la información personal de los niños, niñas y adolescentes se encuentra sujeta a una especial
+            protección por parte de SABUESOS APP S.A.S. Esta información podrá ser tratada en el desarrollo de
+            actividades sociales, promocionales y de beneficios a los hijos de los colaboradores. La autorización del
+            tratamiento debe ser otorgada previamente por el representante legal del menor, previo ejercicio del menor
+            de su derecho a ser escuchado conforme a la razonable determinación de su nivel de madurez, autonomía y
+            capacidad para entender el asunto.
+            El tratamiento de este tipo especial de datos está supeditado al cumplimiento de las condiciones fijadas por
+            la normativa de protección de datos personales, como las siguientes:
+            (i) Asegurar que el tratamiento respete el interés superior, los derechos prevalentes y los derechos
+            fundamentales de los niños, niñas y adolescentes. (ii) Tratar exclusivamente datos que sean de naturaleza
+            pública o que si se tratan datos privados o semiprivados se haga en los términos de la sentencia C-748 de
+            2011 de la Corte Constitucional. (iii) Informar al menor y a su representante legal sobre los términos y
+            condiciones de la respectiva actividad.
+            Para efectos de la autorización, el representante legal del niño, niña o adolescente podrá darla
+            garantizando que en la medida de lo posible se escuchará al menor y su opinión será valorada teniendo en
+            cuenta su madurez, autonomía y capacidad para entender el asunto.
+            9. DATOS Y DERECHOS DE TITULARES RESPECTO DEL TRATAMIENTO DE DATOS SENSIBLES: Los datos sensibles serán
+            recolectados y tratados para las finalidades listadas en esta política. SABUESOS APP S.A.S. se compromete a
+            proteger la privacidad durante el procesamiento de sus datos personales identificables y sensibles. Cuando
+            los titulares de la información autoricen de manera expresa el uso de datos sensibles, SABUESOS APP S.A.S.
+            hará uso de estos con especial cuidado y de conformidad con las reglas establecidas en la legislación de
+            protección de datos y sus decretos reglamentarios.
+            Frente a eventos de recolección de datos sensibles siempre se procederá garantizando al menos las siguientes
+            acciones:
+            (i) Informar al Titular que por tratarse de datos sensibles no está obligado a autorizar su tratamiento.
+            (ii) Informar al Titular de forma explícita y previa, además de los requisitos generales de la autorización
+            para la recolección de cualquier tipo de dato personal, cuáles de los datos que serán objeto de Tratamiento
+            son sensibles y la finalidad del Tratamiento, así como obtener su consentimiento expreso. (iii) Ninguna
+            actividad podrá condicionarse a que el Titular suministre datos personales sensibles.
+            10. DERECHOS DE LOS TITULARES: Como titular de sus datos personales Usted tiene derecho a:
+            (i) Acceder de forma gratuita a los datos proporcionados que hayan sido objeto de tratamiento. (ii) Conocer,
+            actualizar y rectificar su información frente a datos parciales, inexactos, incompletos, fraccionados, que
+            induzcan a error, o aquellos cuyo tratamiento esté prohibido o no haya sido autorizado. (iii) Solicitar
+            prueba de la autorización otorgada. (iv) Presentar ante la Superintendencia de Industria y Comercio (SIC)
+            quejas por infracciones a lo dispuesto en la normatividad vigente. (v) Revocar la autorización y/o solicitar
+            la supresión del dato, siempre que no exista un deber legal o contractual que impida eliminarlos. (vi)
+            Abstenerse de responder las preguntas sobre datos sensibles. Tendrá carácter facultativo las respuestas que
+            versen sobre datos sensibles o sobre datos de las niñas, niños y adolescentes.
+            11. ATENCIÓN DE PETICIONES, CONSULTAS Y RECLAMOS: El Área de servicio al cliente de SABUESOS APP S.A.S. es
+            la dependencia que tiene a cargo dar trámite a las solicitudes de los titulares para hacer efectivos sus
+            derechos.
+            A. Consultas: Los titulares o sus causahabientes podrán consultar la información personal del titular que
+            repose en las bases de datos de SABUESOS APP S.A.S., quien se compromete a suministrar toda la información
+            contenida en el registro individual o que esté vinculada con la identificación del titular y por tanto
+            garantiza:
+            (i) Habilitar medios de comunicación electrónica u otros que considere pertinentes. (ii) Establecer
+            formularios, sistemas y otros métodos simplificados. (iii) Utilizar los servicios de atención al cliente o
+            de reclamaciones que tiene en operación. (iv) En cualquier caso, independientemente del mecanismo
+            implementado para la atención de solicitudes de consulta, las mismas serán atendidas en un término máximo de
+            diez (10) días hábiles contados a partir de la fecha de su recibo. Cuando no fuere posible atender la
+            consulta dentro de dicho termino, se informará al interesado antes del vencimiento de los 10 días,
+            expresando los motivos de la demora y señalando la fecha en que se atenderá su consulta, la cual en ningún
+            caso podrá superar los cinco (5) días hábiles siguientes al vencimiento el primer plazo. (v) Las peticiones,
+            consultas podrán formularse al correo info&#64;sabuesos.co.
+            B. Reclamo: El titular o sus causahabientes que consideren que la información contenida en una base de datos
+            debe ser objeto de corrección, actualización o supresión, o cuando adviertan el presunto incumplimiento de
+            cualquiera de los deberes contenidos en la ley o en la presente política de tratamiento, podrán presentar un
+            reclamo ante el área de servicio al cliente y/o al correo electrónico info&#64;sabuesos.co el cual será
+            tramitado bajo las siguientes reglas:
+            (i) El reclamo del titular se formula mediante solicitud dirigida al Área de servicio al cliente, a través
+            del correo electrónico info&#64;sabuesos.co, dirigida al Área de servicio al cliente, con la identificación
+            del
+            titular, la descripción de los hechos que dan lugar al reclamo, la dirección y acompañando los documentos
+            que se quiera hacer valer. Si el reclamo resulta incompleto, se requerirá al interesado dentro de los cinco
+            (5) días siguientes a la recepción del reclamo para que subsane las fallas. Transcurridos dos (2) meses
+            desde la fecha del requerimiento, sin que el solicitante presente la información requerida, se entenderá que
+            ha desistido del reclamo. (ii) En caso de que quien reciba el reclamo no sea competente para resolverlo,
+            dará traslado a quien corresponda en un término máximo de dos (2) días hábiles e informara de la situación
+            al interesado. (iii) Una vez recibido el reclamo completo, este se catalogará con una etiqueta “reclamo en
+            trámite” y el motivo del mismo, en un término no mayor a dos (2) días hábiles. Dicha etiqueta se mantendrá
+            hasta que el reclamo sea decidido. (iv) El término máximo para atender el reclamo será de quince (15) días
+            hábiles contados a partir del día siguiente a la fecha de su recibo. Cuando no fuere posible atender el
+            relamo dentro de dicho término, se informará al interesado los motivos de la demora y la fecha en que se
+            atenderá su reclamo, la cual en ningún caso podrá superar los ocho (8) días hábiles.
+
+          </p>
+        </ion-content>
+      </ng-template>
+    </ion-modal>
+    <ion-row class="mt-2">
+      <ion-col>
+        <ion-button type="submit" color="tertiary" expand="block">
+          <ion-text color="primary"><strong>Registrarse</strong></ion-text>
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </form>
+</ion-content>

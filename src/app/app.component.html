@@ -1,0 +1,32 @@
+<ion-app>
+  <ion-split-pane contentId="main-content">
+    <ion-menu contentId="main-content" type="overlay">
+      <ion-content>
+        <ion-list>
+          <ion-list-header class="sabuesos-menu-title">Sabuesos</ion-list-header>
+          <ion-label class="name-user-menu mb-1">{{firebaseService.nameUserActive ? firebaseService.nameUserActive: ''}}
+          </ion-label>
+          <ng-container *ngIf="firebaseService.isLoggedIn; else isNotLogged">
+            <ion-menu-toggle autoHide="false" *ngFor="let p of appPagesLogged$ | async">
+              <ion-item [routerLink]="[p.url]" routerLinkActive="selected" routerDirection="root" lines="none"
+                detail="false">
+                <ion-icon slot="start" [ios]="p.icon + '-outline'" [md]="p.icon + '-sharp'"></ion-icon>
+                <ion-label>{{ p.title }}</ion-label>
+              </ion-item>
+            </ion-menu-toggle>
+          </ng-container>
+        </ion-list>
+        <ng-template #isNotLogged>
+          <ion-menu-toggle autoHide="false" *ngFor="let p of appPages">
+            <ion-item [routerLink]="[p.url]" routerLinkActive="selected" routerDirection="root" lines="none"
+              detail="false">
+              <ion-icon slot="start" [ios]="p.icon + '-outline'" [md]="p.icon + '-sharp'"></ion-icon>
+              <ion-label>{{ p.title }}</ion-label>
+            </ion-item>
+          </ion-menu-toggle>
+        </ng-template>
+      </ion-content>
+    </ion-menu>
+    <ion-router-outlet id="main-content"></ion-router-outlet>
+  </ion-split-pane>
+</ion-app>

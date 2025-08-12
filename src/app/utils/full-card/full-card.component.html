@@ -1,0 +1,26 @@
+<ion-card mode="ios" class="card-size" button (click)="goReport($event)" *ngIf="data">
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-img [src]="data.filesUrl[0].url" class="card-image" *ngIf="data.filesUrl; else nofound"></ion-img>
+        <ng-template #nofound>
+          <ion-img src="./assets/img_pets/dont_found.png" class="card-image"></ion-img>
+        </ng-template>
+      </ion-col>
+      <ion-col>
+        <ion-card-header>
+          <ion-card-subtitle>
+            <ion-text color="primary">
+              <h4><strong>{{data?.pets?.name}}</strong></h4>
+            </ion-text>
+          </ion-card-subtitle>
+        </ion-card-header>
+        <ion-card-content>
+          <ion-text color="primary">
+            {{data.description}}
+          </ion-text>
+        </ion-card-content>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-card>

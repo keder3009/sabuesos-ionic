@@ -1,0 +1,11 @@
+<app-header></app-header>
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+  </ion-header>
+  <ion-img src="/assets/logo-sabuesos.png" class="logo"></ion-img>
+  <div class="text">
+    <ion-label color="primary">Selecciona en el mapa la ubicación donde {{typeReport}} a tu peludito
+    </ion-label>
+  </div>
+  <app-map [latitude]="latitude" [longitude]="longitude" (newCoords)="newCoords($event)" [hasButton]="true"></app-map>
+</ion-content>

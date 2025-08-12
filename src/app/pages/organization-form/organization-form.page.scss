@@ -1,0 +1,32 @@
+.form {
+  width: 70%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.center {
+  text-align: center;
+}
+
+.small-text {
+  height: 52px;
+  display: flex;
+  align-items: center;
+}
+
+ion-avatar img {
+  width: 5rem !important;
+  height: 5rem !important;
+  max-width: 5rem !important;
+}
+
+ion-avatar {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+::ng-deep {
+  ion-modal {
+    --background: white !important
+  }
+}

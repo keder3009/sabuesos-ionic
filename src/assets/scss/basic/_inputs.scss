@@ -1,0 +1,38 @@
+@import "font";
+@import "colors";
+
+ion-select {
+  border-bottom: 1px solid $primary-text;
+}
+
+ion-item {
+  --padding-end: 0px;
+  --inner-padding-end: 0px;
+  --padding-start: 0px;
+  --inner-border-width: 0px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+ion-input {
+  border-bottom: 1px solid $primary-text;
+}
+
+ion-textarea {
+  border-bottom: 1px solid $primary-text;
+}
+
+
+ion-datetime {
+  border-bottom: 1px solid $primary-text;
+}
+
+list-ios {
+  background: white !important;
+}
+
+/*
+.list-md {
+  background: white !important;
+}
+*/

@@ -1,0 +1,25 @@
+<ion-header [translucent]="false">
+  <ion-toolbar>
+    <ion-buttons class="position-buttons-main">
+      <ion-img src="/assets/logo-header-text.png" class="logo-header"></ion-img>
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content [fullscreen]="true">
+  <ion-list>
+    <!-- <ion-item>
+      <ion-auto-complete [dataProvider]="autocompleteCountriesService"></ion-auto-complete>
+    </ion-item> -->
+    <ion-item class="mb-1 w-100">
+      <app-slides [option]="'advertising'"></app-slides>
+    </ion-item>
+    <ion-item>
+      <ng-container>
+        <app-segment [reportList]="reportList" (optionSelected)="optionSelected($event)"
+          [activedSegment]="activedSegment">
+        </app-segment>
+      </ng-container> 
+    </ion-item>
+  </ion-list>
+</ion-content>

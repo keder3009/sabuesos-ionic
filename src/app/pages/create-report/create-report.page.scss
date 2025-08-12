@@ -1,0 +1,52 @@
+.form {
+  width: 70%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.logo {
+  width: 25%;
+  height: 25%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.custom-input-file .input-file {
+  cursor: pointer;
+  margin: 0;
+  opacity: 0;
+  outline: 0 none;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+}
+
+.text-upload {
+  justify-content: center;
+  display: flex;
+  position: relative;
+  top: -2rem;
+}
+
+.vertical-input {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+.input-date {
+  text-align: center;
+}
+
+.viewFiles {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.file-name{
+  width: 80%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

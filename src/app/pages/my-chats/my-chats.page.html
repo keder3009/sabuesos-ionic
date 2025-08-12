@@ -1,0 +1,30 @@
+<app-header></app-header>
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+  </ion-header>
+  <ion-refresher slot="fixed" (ionRefresh)="handleRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <ion-list>
+    <ion-item-sliding *ngFor="let chat of chats">
+      <ion-item-options side="start">
+      </ion-item-options>
+      <ion-item class="ion-padding-start" (click)="goToChat(chat)">
+        <ion-label>
+          <ng-container *ngIf="chat.userSend === currentUser._id; else changeTemplate">
+            <h3>Enviado a: {{chat.userReceivedName}}</h3>
+          </ng-container>
+          <ng-template #changeTemplate>
+            <h3>Recibido de: {{chat.userSendName}}</h3>
+          </ng-template>
+          <h3>Fecha último mensaje: {{chat.updatedAt | date: "MM/dd/yy"}}</h3>
+        </ion-label>
+      </ion-item>
+      <ion-item-options side="end">
+        <ion-item-option color="danger" (click)="delete(chat)">
+          <ion-icon slot="icon-only" name="trash-outline"></ion-icon>
+        </ion-item-option>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
+</ion-content>

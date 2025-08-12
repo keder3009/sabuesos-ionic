@@ -1,0 +1,50 @@
+<!-- <ion-header [translucent]="false">
+  <ion-toolbar>
+    <ion-buttons slot="end">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-button (click)="deleteNotifications()" color="danger">
+      <ion-icon slot="icon-only" name="trash"></ion-icon>
+    </ion-button>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+  </ion-header>
+  <ion-refresher slot="fixed" (ionRefresh)="handleRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <ion-list *ngIf="notifications && notifications.length > 0">
+    <ion-item *ngFor="let push of notifications">
+      <ion-text>
+        <h3>{{push.title}}</h3>
+        <p>{{push.body}}</p>
+      </ion-text>
+    </ion-item>
+  </ion-list>
+</ion-content> -->
+<ion-header [translucent]="false">
+  <ion-toolbar>
+    <ion-buttons slot="end">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-button size="small" (click)="deleteNotifications()" color="danger">
+      <ion-icon slot="icon-only" name="trash"></ion-icon>
+    </ion-button>
+  </ion-toolbar>
+</ion-header>
+<ion-content [fullscreen]="true">
+  <ion-refresher slot="fixed" (ionRefresh)="handleRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <ion-list class="ion-padding-start" *ngIf="notifications && notifications.length > 0">
+    <ion-item *ngFor="let push of notifications">
+      <ion-text>
+        <h3>{{push.title}}</h3>
+        <p>{{push.body}}</p>
+      </ion-text>
+    </ion-item>
+  </ion-list>
+</ion-content>

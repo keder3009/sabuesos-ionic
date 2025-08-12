@@ -1,0 +1,83 @@
+.form {
+  width: 70%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.center {
+  text-align: center;
+}
+
+ion-avatar img {
+  width: 5rem !important;
+  height: 5rem !important;
+  max-width: 5rem !important;
+}
+
+ion-avatar {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.custom-input-file {
+  background-color: #ec5a12;
+  color: #27234f;
+  cursor: pointer;
+  font-size: 184x;
+  font-weight: 500;
+  margin: 4px 2px;
+  min-height: 15px;
+  text-align: center;
+  height: 48px;
+  border-radius: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.custom-input-file .input-file {
+  cursor: pointer;
+  margin: 0;
+  opacity: 0;
+  outline: 0 none;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+}
+
+.text-upload {
+  justify-content: center;
+  display: flex;
+  position: relative;
+  top: -2.3rem;
+}
+
+.vertical-input {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+.input-date {
+  text-align: center;
+}
+
+.viewFiles {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.file-name {
+  width: 80%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.content-date {
+  margin-top: 5px;
+}
+
+.text-date {
+  font-size: 12px;
+}

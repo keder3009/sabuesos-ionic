@@ -1,0 +1,54 @@
+//Colors
+
+// Others
+$white: white;
+$black: #000000;
+$gray: #a1a1a1;
+$shadown: rgba(39, 35, 79, 0.58);
+
+//Text
+$primary-text: #27234f;
+$secondary-text: #ffb81c;
+$third-text: #ff9c74;
+$white-text: $white;
+$black-text: $black;
+$gray-text: $gray;
+
+//Buttons
+$primary-button: #ec5a12;
+$secondary-button: #ff9c74;
+
+// Alerts
+$yellow: #f9e79f;
+$green: #a3e4d7;
+$orange: #d98880;
+$blue: #aed6f1;
+
+// bg
+$bg-usual: #ffffff;
+
+// Border Inputs
+$border-input-blue: $primary-text;
+
+.material-icons-two-tone {
+  filter: invert(32%) sepia(96%) saturate(1149%) hue-rotate(177deg)
+    brightness(92%) contrast(99%);
+}
+.icons-wh {
+  filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(201deg)
+    brightness(106%) contrast(106%);
+}
+
+.icons-wh-svg {
+  color: white !important;
+}
+
+.tone-red {
+  filter: invert(11%) sepia(66%) saturate(7404%) hue-rotate(358deg)
+    brightness(109%) contrast(97%);
+}
+
+.tone-green {
+  filter: invert(44%) sepia(62%) saturate(5611%) hue-rotate(126deg)
+    brightness(102%) contrast(82%);
+}

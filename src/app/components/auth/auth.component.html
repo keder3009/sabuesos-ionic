@@ -1,0 +1,20 @@
+<div class="buttonsContainer mt-1 mb-1">
+  <ion-button *ngIf="platformName === 'ios'" expand="block" color="dark" (click)="registerWithApple()">
+    <ion-icon style="margin-right: 5px;" name="logo-apple"></ion-icon>
+    Ingresar con Apple
+  </ion-button>
+  <div class="ion-margin-top"></div>
+  <ion-button expand="block" color="danger" (click)="registerWithGoogle()">
+    <ion-icon style="margin-right: 5px;" name="logo-google"></ion-icon>
+    Ingresar con Google
+  </ion-button>
+  <div class="ion-margin-top"></div>
+  <ion-button expand="block" color="primary" (click)="registerWithFacebook()">
+    <ion-icon style="margin-right: 5px;" name="logo-facebook"></ion-icon>
+    Ingresar con Facebook
+  </ion-button>
+  <div class="ion-margin-top"></div>
+  <ion-button expand="block" color="light" (click)="goToLogin()">
+    Correo Electrónico
+  </ion-button>
+</div>

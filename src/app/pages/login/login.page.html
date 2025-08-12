@@ -1,0 +1,38 @@
+<app-header [routePrevious]="routePrevious"></app-header>
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+  </ion-header>
+  <ion-img src="/assets/logo-sabuesos.png" class="logo"></ion-img>
+  <form class="form" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    <ion-item>
+      <ion-input label="Correo" labelPlacement="floating" clearInput="true" type="email" formControlName="email"
+        required></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input label="Contraseña" labelPlacement="floating" clearInput="true" type="password"
+        formControlName="password" required></ion-input>
+    </ion-item>
+    <ion-button type="submit" color="tertiary" expand="block" class="mt-2">
+      <ion-text color="primary"><strong>Ingresar</strong></ion-text>
+    </ion-button>
+    <ion-item>
+      <a (click)="recoveryPassword()" class="small-text" color="primary" slot="end">¿Olvido su
+        Contraseña?</a>
+    </ion-item>
+    <div class="buttonsContainer mt-1 mb-1">
+      <ion-button *ngIf="platformName === 'ios'" expand="block" color="dark" (click)="registerWithApple()">
+        <ion-icon name="logo-apple"></ion-icon>
+        Ingresar con Apple
+      </ion-button>
+      <ion-button expand="block" color="danger" (click)="registerWithGoogle()">
+        <ion-icon name="logo-google"></ion-icon>
+        Ingresar con Google
+      </ion-button>
+      <div class="ion-margin-top"></div>
+      <ion-button expand="block" color="primary" (click)="registerWithFacebook()">
+        <ion-icon name="logo-facebook"></ion-icon>
+        Ingresar con Facebook
+      </ion-button>
+    </div>
+  </form>
+</ion-content>

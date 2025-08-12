@@ -1,0 +1,83 @@
+@import "/src/assets/scss/basic/colors";
+
+.divider {
+  display: flex;
+
+  &:before,
+  &:after {
+    content: "";
+    flex: 1;
+  }
+}
+
+.line {
+  align-items: center;
+  margin: 1em -1em;
+  color: #000;
+
+  &:before,
+  &:after {
+    height: 1px;
+    margin: 0 1em;
+  }
+}
+
+.one-line {
+  &:before,
+  &:after {
+    background: #cccccc;
+  }
+}
+
+.auth-form ion-grid,
+.auth-form ion-row {
+  height: auto;
+  justify-content: center;
+  align-items: center;
+}
+
+.already {
+  display: block;
+  text-align: center;
+  padding-bottom: 10px;
+  color: $primary-text;
+}
+
+.logo {
+  width: 80%;
+  height: 80%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.entity {
+  flex: 1 1 0%;
+  order: 3;
+  min-width: 0px;
+  max-width: 100%;
+  text-align: center !important;
+}
+.logo-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 35%;
+}
+.content {
+  height: 65%;
+  background-color: white;
+  border-radius: 50px 50px 0 0;
+  box-shadow: 0px -2px 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  padding-top: 40px;
+}
+
+.content-text {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+.text-register{
+  text-decoration: underline;
+  cursor: pointer;
+}

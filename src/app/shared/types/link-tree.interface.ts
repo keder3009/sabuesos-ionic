@@ -1,0 +1,1 @@
+export const LINK_TREE_URL = 'https://linktr.ee/sabuesos';

@@ -1,0 +1,17 @@
+<app-header></app-header>
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+  </ion-header>
+  <ion-img src="/assets/logo-sabuesos.png" class="logo"></ion-img>
+  <ion-item class="form mb-2">
+    <ion-text color="primary" class="form">¿Quieres apoyar nuestro proyecto? Dona aquí en nuestra Vaki. Para realizar tu
+      aporte escanea el código QR o dale click a la imagen.
+    </ion-text>
+  </ion-item>
+  <div class="qr-container" (click)="openVakiLink()">
+  <ion-img src="/assets/qr_ionic.png" class="qr clickeable"></ion-img>
+</div>
+  <ion-item class="form">
+    <ion-text color="primary" class="form mt-2">Estamos en contacto&#64;sabuesos.com</ion-text>
+  </ion-item>
+</ion-content>

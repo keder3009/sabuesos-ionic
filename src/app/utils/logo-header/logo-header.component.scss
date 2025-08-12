@@ -1,0 +1,26 @@
+.icon-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.flex-column-start {
+    display: flex;
+    flex-direction: flex-start;
+    margin-left: 1rem;
+}
+
+.select-width-50 {
+    min-width: 50vw;
+}
+
+::ng-deep.sc-ion-searchbar-md-h {
+    --box-shadow: transparent !important;
+}
+
+:host {
+    ion-icon {
+        color: #ec5a12;
+    }
+}

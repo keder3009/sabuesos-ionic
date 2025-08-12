@@ -1,0 +1,11 @@
+<swiper-container pagination='{"dynamicBullets": true, "clickable": true}'
+  autoplay='true' loop="true" style="width: 100%;"
+  watch-slides-progress="true">
+  <swiper-slide *ngFor="let slide of slides" class="slide-size">
+    <ion-card mode="ios">
+      <ion-item class="box">
+        <img (click)="openAd(slide)" [src]="slide.url" [ngClass]="{'slide-image': !isSlide}" />
+      </ion-item>
+    </ion-card>
+  </swiper-slide>
+</swiper-container>

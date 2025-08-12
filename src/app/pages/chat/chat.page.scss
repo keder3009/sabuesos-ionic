@@ -1,0 +1,56 @@
+@import "./src/assets/scss/basic/index";
+
+.message-owner {
+  padding: 10px;
+  border-radius: 10px;
+  margin-bottom: 4px;
+  white-space: pre-wrap;
+  background: #ffdacc;
+}
+
+.message-interview {
+  padding: 10px;
+  border-radius: 10px;
+  margin-bottom: 4px;
+  white-space: pre-wrap;
+  background: #ffefcc;
+}
+
+.my-message {
+  text-align: left;
+  color: #27234f;
+}
+
+.other-message {
+  text-align: left;
+  color: #27234f;
+}
+
+.time {
+  color: #27234f;
+  float: right;
+  font-size: small;
+}
+
+.message-input {
+  margin-top: 0px;
+  border: 1px solid var(--ion-color-medium);
+  border-radius: 10px;
+  background: #fff;
+  color: $primary-text;
+}
+
+.msg-btn {
+  --padding-start: 0.5em;
+  --padding-end: 0.5em;
+}
+
+:host {
+  ion-icon {
+    color: #ec5a12;
+  }
+}
+
+.chat-container {
+  margin: 2rem;
+}

@@ -1,0 +1,19 @@
+@import "./src/assets/scss/basic/index";
+
+.center-text {
+  margin-left: auto;
+  margin-right: auto;
+  color: $primary-text;
+}
+
+.logo {
+  width: 20%;
+  height: 20%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.position-buttons {
+  display: flex;
+  justify-content: space-between;
+}

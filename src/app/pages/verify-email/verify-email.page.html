@@ -1,0 +1,31 @@
+<app-header [routePrevious]="routePrevious"></app-header>
+
+<ion-content [fullscreen]="true" class="auth-form">
+  <ion-header collapse="condense">
+  </ion-header>
+  <ion-img src="/assets/logo-sabuesos.png" class="logo"></ion-img>
+  <ion-grid>
+    <ion-row>
+      <ion-col align-self-center>
+        <form #formulario="ngForm" class="form" (ngSubmit)="verifyEmail()">
+          <ion-item>
+            <ion-text color="primary">
+              <strong>
+                Por favor ingrese a su correo y de click en el link de verificación enviado.
+              </strong>
+            </ion-text>
+          </ion-item>
+          <div class="buttonsContainer mt-1">
+            <ion-button type="submit" color="tertiary" expand="block" class="mt-2">
+              <ion-text color="primary"><strong>Reenviar correo</strong></ion-text>
+            </ion-button>
+            <div class="ion-margin-top"></div>
+            <ion-button expand="block" color="secondary" (click)="goToMainPage()">
+              <ion-text color="primary"><strong>Ir a Inicio</strong></ion-text>
+            </ion-button>
+          </div>
+        </form>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

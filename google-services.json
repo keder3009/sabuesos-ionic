@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "909651562334",
+    "firebase_url": "https://sabuesos-ae49b-default-rtdb.firebaseio.com",
+    "project_id": "sabuesos-ae49b",
+    "storage_bucket": "sabuesos-ae49b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:909651562334:android:7692b9f424f773be9109cf",
+        "android_client_info": {
+          "package_name": "co.com.sabuesos.newapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "909651562334-o2jsv9m3sdpkq11ng034bfsh2m7b5fb1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBuEaffPAgddDy3nSJ4eux_En0ZG94Z0Co"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "909651562334-o2jsv9m3sdpkq11ng034bfsh2m7b5fb1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

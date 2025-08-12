@@ -1,0 +1,436 @@
+@use "sass:math";
+@import "src/assets/scss/basic/colors";
+// FONT
+// Font Face Global
+
+// Montserrat
+@font-face {
+  font-family: montserratRegular;
+  src: url("../../fonts/Montserrat-Regular.ttf") format("opentype");
+}
+@font-face {
+  font-family: montserratMedium;
+  src: url("../../fonts/WorkSans-Medium.ttf") format("opentype");
+}
+@font-face {
+  font-family: montserratBold;
+  src: url("../../fonts/Montserrat-Bold.ttf") format("opentype");
+}
+@font-face {
+  font-family: montserratSemiBold;
+  src: url("../../fonts/Montserrat-SemiBold.ttf") format("opentype");
+}
+
+// WorkSans
+@font-face {
+  font-family: workSansRegular;
+  src: url("../../fonts/WorkSans-Regular.ttf") format("opentype");
+}
+@font-face {
+  font-family: workSansMedium;
+  src: url("../../fonts/WorkSans-Medium.ttf") format("opentype");
+}
+@font-face {
+  font-family: workSansBold;
+  src: url("../../fonts/WorkSans-Bold.ttf") format("opentype");
+}
+
+@function strip-unit($value) {
+  @return math.div($value, $value * 0 + 1);
+}
+
+@mixin fluid-type($min-vw, $max-vw, $min-font-size, $max-font-size) {
+  $u1: unit($min-vw);
+  $u2: unit($max-vw);
+  $u3: unit($min-font-size);
+  $u4: unit($max-font-size);
+
+  @if $u1 == $u2 and $u1 == $u3 and $u1 == $u4 {
+    & {
+      font-size: $min-font-size;
+      @media screen and (min-width: $min-vw) {
+        font-size: calc(
+          #{$min-font-size} + #{strip-unit($max-font-size - $min-font-size)} *
+            ((100vw - #{$min-vw}) / #{strip-unit($max-vw - $min-vw)})
+        );
+      }
+      @media screen and (min-width: $max-vw) {
+        font-size: $max-font-size;
+      }
+    }
+  }
+}
+
+$min_width: 316px;
+$max_width: 1366px;
+$min_font: 10px;
+$max_font: 14px;
+
+// WorkSans workSansRegular
+.text-r {
+  @include fluid-type($min_width, $max_width, $min_font, $max_font);
+  font-family: workSansRegular, serif;
+  line-height: 1.25;
+  margin: 0;
+  width: 100%;
+}
+// WorkSans workSansMedium
+.text-m {
+  @include fluid-type($min_width, $max_width, $min_font, $max_font);
+  font-family: workSansMedium, serif;
+  line-height: 1.25;
+  margin: 0;
+  width: 100%;
+}
+// WorkSans workSansBold
+.text-b {
+  @include fluid-type($min_width, $max_width, $min_font, $max_font);
+  font-family: workSansBold, serif;
+  line-height: 1.25;
+  margin: 0;
+  width: 100%;
+}
+
+$mod_1: 1.2; // mobile
+$mod_2: 1.4; // desktop
+$mod_3: 1.5; // desktop
+$mod_4: 0.8; // small
+
+.medium-text-14 {
+  font-size: 0.875rem;
+  @include fluid-type($min_width, $max_width, 14px, 15px);
+  font-family: "workSansMedium", brandingBold, serif;
+}
+.medium-text-b-14 {
+  font-size: 0.875rem;
+  @include fluid-type($min_width, $max_width, 14px, 15px);
+  font-family: montserratBold, serif;
+}
+
+.medium-text-b-14-subtitle {
+  color: #00000099 !important;
+  font-size: 0.875rem;
+  @include fluid-type($min_width, $max_width, 14px, 15px);
+  font-family: montserratBold, serif;
+}
+
+.medium-text-12 {
+  font-size: 0.75rem;
+  @include fluid-type($min_width, $max_width, 12px, 13px);
+  font-family: workSansRegular, serif;
+}
+
+.medium-text-10 {
+  font-size: 0.65rem;
+  @include fluid-type($min_width, $max_width, 10px, 11px);
+  font-family: workSansRegular, serif;
+}
+
+.big-title {
+  font-size: $mod_1 * $mod_1 * $mod_1 * $mod_1 * 1rem;
+  @include fluid-type($min_width, $max_width, 28px, 32px); //46.192px
+  font-family: montserratBold, serif;
+  margin: 1rem 0;
+}
+
+.main-title {
+  font-size: $mod_1 * $mod_1 * $mod_1 * 1rem;
+  @include fluid-type(
+    $min_width,
+    $max_width,
+    $mod_1 * $mod_1 * $mod_1 * $min_font,
+    $mod_2 * $mod_2 * $mod_2 * $min_font
+  );
+  font-family: montserratBold, serif;
+  margin: 0 0 1.5rem 0;
+  text-align: center;
+  width: 100%;
+}
+
+.sub-title {
+  font-size: $mod_1 * $mod_1 * 1rem;
+  @include fluid-type(
+    $min_width,
+    $max_width,
+    $mod_1 * $mod_1 * $min_font,
+    $mod_2 * $mod_2 * $min_font
+  );
+  font-family: montserratSemiBold, serif;
+  margin-bottom: 0.8rem;
+  text-align: center;
+  width: 100%;
+}
+
+.sub-title-left {
+  font-size: $mod_1 * $mod_1 * 1rem;
+  @include fluid-type(
+    $min_width,
+    $max_width,
+    $mod_1 * $mod_1 * $min_font,
+    $mod_2 * $mod_2 * $min_font
+  );
+  font-family: montserratSemiBold, serif;
+  margin-bottom: 0;
+  text-align: left;
+  width: 100%;
+}
+
+.sub-title-toolbar {
+  font-size: $mod_1 * $mod_1 * 0.7rem;
+  @include fluid-type(
+    $min_width,
+    $max_width,
+    $mod_1 * $mod_1 * $min_font * 0.7,
+    $mod_2 * $mod_2 * $min_font * 0.7
+  );
+  font-family: montserratSemiBold, serif;
+  margin-bottom: 0.8rem;
+  width: 100%;
+}
+
+.small-sub-title {
+  font-size: 12px;
+  @include fluid-type($min_width, $max_width, 10px, 14px);
+  font-family: montserratSemiBold, serif;
+  margin-bottom: 0.8rem;
+  width: 100%;
+}
+
+//big-title variations
+.big-title-secondary {
+  @extend .big-title;
+  color: $secondary-text;
+}
+
+.big-title-primary {
+  @extend .big-title;
+  color: $primary-text;
+}
+
+.big-title-white {
+  @extend .big-title;
+  color: $white-text;
+}
+
+.big-title-black {
+  @extend .big-title;
+  color: $black-text;
+}
+
+//main-title variations
+.main-title-secondary {
+  @extend .main-title;
+  color: $secondary-text;
+}
+
+.main-title-primary {
+  @extend .main-title;
+  color: $primary-text;
+}
+
+.main-title-white {
+  @extend .main-title;
+  color: $white-text;
+}
+
+//sub-title variations
+.sub-title-secondary {
+  @extend .sub-title;
+  color: $secondary-text;
+}
+
+.sub-title-primary {
+  @extend .sub-title;
+  color: $primary-text;
+}
+
+.sub-title-white {
+  @extend .sub-title;
+  color: $white-text;
+}
+
+//small-sub-title variations
+.small-sub-title-secondary {
+  /* mod */
+  @extend .small-sub-title;
+  color: $secondary-text;
+}
+
+.small-sub-title-primary {
+  @extend .small-sub-title;
+  color: $primary-text;
+  margin-bottom: 0;
+}
+
+.small-sub-title-white {
+  @extend .small-sub-title;
+  color: $white-text;
+}
+
+//text with worksans medium 14 variations
+.text-m-14-secondary {
+  @extend .medium-text-14;
+  color: $secondary-text;
+}
+
+.text-m-14-primary {
+  @extend .medium-text-14;
+  color: $primary-text;
+}
+
+.text-m-14-white {
+  @extend .medium-text-14;
+  color: $white-text !important;
+}
+
+.text-m-14-black {
+  @extend .medium-text-14;
+  color: $black-text;
+}
+
+.text-m-14-gray {
+  @extend .medium-text-14;
+  color: $gray;
+}
+
+//text with worksans medium 12 variations
+.text-m-12-secondary {
+  @extend .medium-text-12;
+  color: $secondary-text;
+}
+
+.text-m-12-primary {
+  @extend .medium-text-12;
+  color: $primary-text;
+}
+
+.text-m-12-white {
+  @extend .medium-text-12;
+  color: $white-text;
+}
+
+.text-m-12-black {
+  @extend .medium-text-12;
+  color: $black-text;
+}
+
+//text with worksans medium 12 variations
+.text-m-10-secondary {
+  @extend .medium-text-10;
+  color: $secondary-text;
+}
+
+.text-m-10-primary {
+  @extend .medium-text-10;
+  color: $primary-text;
+}
+
+.text-m-10-white {
+  @extend .medium-text-10;
+  color: $white-text;
+}
+
+.text-m-10-black {
+  @extend .medium-text-10;
+  color: $black-text;
+}
+
+.text-center {
+  text-align: center;
+  text-align: -webkit-center;
+}
+
+.text-right {
+  text-align: right;
+  text-align: -webkit-right;
+}
+.text-left {
+  text-align: left;
+  text-align: -webkit-left;
+}
+
+.mb-0-5 {
+  margin-bottom: 0.5rem;
+}
+.mb-1 {
+  margin-bottom: 1rem;
+}
+
+.mb-1-5 {
+  margin-bottom: 1.5rem;
+}
+
+.mb-2 {
+  margin-bottom: 2rem !important;
+}
+
+.mb-3 {
+  margin-bottom: 3rem;
+}
+
+.mr-0-5 {
+  margin-right: 0.5rem;
+}
+
+.ml-0-5 {
+  margin-left: 0.5rem;
+}
+
+.ml-1 {
+  margin-left: 1rem;
+}
+
+.ml-1-5 {
+  margin-left: 1.5rem;
+}
+
+.ml-2 {
+  margin-left: 2rem;
+}
+
+.ml-3 {
+  margin-left: 3rem;
+}
+
+.ml-0-5 {
+  margin-left: 0.5rem;
+}
+
+.mr-0-5 {
+  margin-right: 0.5rem;
+}
+
+.mr-1 {
+  margin-right: 1rem !important;
+}
+
+.mr-2 {
+  margin-right: 2rem;
+}
+
+.mr-3 {
+  margin-right: 3rem;
+}
+
+.mt-0-5 {
+  margin-top: 0.5rem;
+}
+
+.mt-1 {
+  margin-top: 1rem;
+}
+.mt-0-5 {
+  margin-top: 0.5rem;
+}
+
+.mt-1-5 {
+  margin-top: 1.5rem;
+}
+
+.mt-2 {
+  margin-top: 2rem;
+}
+
+.pr-2 {
+  padding-right: 2rem;
+}

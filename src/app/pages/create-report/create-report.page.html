@@ -1,0 +1,92 @@
+<app-header [routePrevious]="routePrevious"></app-header>
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+  </ion-header>
+  <app-slides [option]="'advertising'"></app-slides>
+  <!-- <ion-img src="/assets/logo-sabuesos.png" class="logo"></ion-img> -->
+  <form class="form" [formGroup]="createReportForm" (ngSubmit)="onSubmit()" *ngIf="userInfo || entityInfo">
+    <ion-item>
+      <ion-input label="Nombre de la Mascota" labelPlacement="floating" placeholder="NOMBRE DESCONOCIDO"
+        clearInput="true" type="text" formControlName="namePet"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-select label="Tipo" color="primary" formControlName="typePet">
+        <ion-select-option *ngFor='let petSelector of petSelectList'
+          [value]='petSelector.value'>{{petSelector?.label}}</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-input label="Raza" labelPlacement="floating" clearInput="true" type="text"
+        formControlName="race"></ion-input>
+    </ion-item>
+    <div class="ion-margin-top">
+      <ion-label class="text-date">Fecha Nacimiento</ion-label>
+      <ion-item>
+        <ion-input color="primary" placeholder="dd" clearInput="true" type="text" formControlName="birthDatePetDay"
+          maxlength="2" class="input-date"></ion-input>
+        <ion-input placeholder="mm" clearInput="true" type="text" formControlName="birthDatePetMonth" maxlength="2"
+          class="input-date"></ion-input>
+        <ion-input placeholder="aaaa" clearInput="true" type="text" formControlName="birthDatePetYear" maxlength="4"
+          minlength="4" class="input-date"></ion-input>
+      </ion-item>
+    </div>
+    <ion-list class="ion-margin-top" *ngIf="!isEntity">
+      <ion-radio-group formControlName="checkOption">
+        <ion-item *ngFor="let option of optionTypeReport">
+          <div>
+            <ion-radio labelPlacement="end" [value]="option.value">{{option?.label}}</ion-radio>
+          </div>
+        </ion-item>
+      </ion-radio-group>
+    </ion-list>
+
+    <ion-list *ngIf="isEntity">
+      <ion-radio-group formControlName="checkOption">
+        <ion-item *ngFor="let option of optionTypeReportEntities">
+          <div>
+            <ion-radio labelPlacement="end" [value]="option.value">{{option?.label}}</ion-radio>
+          </div>
+        </ion-item>
+      </ion-radio-group>
+    </ion-list>
+    <!-- Textarea that clears the value on edit -->
+    <ion-item class="mb-2">
+      <ion-textarea labelPlacement="floating" label="Descripción" clearInput="true" rows="4"
+        clearOnEdit="true" formControlName="description">
+      </ion-textarea>
+    </ion-item>
+
+    <ng-container *ngIf="temporalFiles && temporalFiles.length > 0">
+      <ion-list *ngFor="let file of temporalFiles; let i = index">
+        <div class="viewFiles">
+          <ion-text class="file-name">
+            {{file?.name}}
+          </ion-text>
+          <ion-button (click)="deleteFile(i)">X</ion-button>
+        </div>
+      </ion-list>
+    </ng-container>
+
+    <ng-container *ngIf="isUpdate && temporalFilesUpdate && temporalFilesUpdate.length > 0">
+      <ion-list *ngFor="let file of temporalFilesUpdate; let i = index">
+        <div class="viewFiles">
+          <ion-text class="file-name">
+            {{file?.name}}
+          </ion-text>
+          <ion-button (click)="deleteFile(i)">X</ion-button>
+        </div>
+      </ion-list>
+    </ng-container>
+
+    <ion-button class="mb-2" color="secondary" expand="block" (click)="uploadPhoto()"
+      *ngIf="(temporalFiles.length + temporalFilesUpdate.length) < 3">
+      <ion-text color="primary"><strong>FOTOS</strong></ion-text>
+    </ion-button>
+    <ion-button color="tertiary" expand="block" type="submit" class="mb-1">
+      <ion-text color="primary"><strong>Reportar</strong></ion-text>
+    </ion-button>
+    <ion-button color="tertiary" expand="block" class="mb-1" (click)="cancel()">
+      <ion-text color="primary"><strong>Cancelar</strong></ion-text>
+    </ion-button>
+  </form>
+</ion-content>

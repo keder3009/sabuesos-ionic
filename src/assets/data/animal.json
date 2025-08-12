@@ -1,0 +1,92 @@
+[
+  {
+    "id": "1",
+    "name": "Milu",
+    "img": "/assets/img_pets/gato1.jpg",
+    "age": 2,
+    "status": 0,
+    "breed": 0,
+    "description": "Se extravio cerca del jardin botanico"
+  },
+  {
+    "id": "2",
+    "name": "Cosita",
+    "img": "/assets/img_pets/gato2.jpg",
+    "age": 2,
+    "status": 0,
+    "breed": 0,
+    "description": "Se extravio cerca del jardin botanico"
+  },
+  {
+    "id": "3",
+    "name": "Sacha",
+    "img": "/assets/img_pets/gato3.jpg",
+    "age": 2,
+    "status": 0,
+    "breed": 0,
+    "description": "Se extravio cerca del jardin botanico"
+  },
+  {
+    "id": "4",
+    "name": "Orion",
+    "img": "/assets/img_pets/gato4.jpg",
+    "age": 2,
+    "status": 1,
+    "breed": 1,
+    "description": "Se extravio cerca del jardin botanico"
+  },
+  {
+    "id": "5",
+    "name": "Venus",
+    "img": "/assets/img_pets/perro.jpg",
+    "age": 2,
+    "status": 1,
+    "breed": 1,
+    "description": "Se extravio cerca del jardin botanico"
+  },
+  {
+    "id": "6",
+    "name": "Loki",
+    "img": "/assets/img_pets/perro1.jpg",
+    "age": 2,
+    "status": 1,
+    "breed": 1,
+    "description": "Se extravio cerca del jardin botanico"
+  },
+  {
+    "id": "7",
+    "name": "Thor",
+    "img": "/assets/img_pets/perro2.jpg",
+    "age": 2,
+    "status": 1,
+    "breed": 2,
+    "description": "Se extravio cerca del jardin botanico"
+  },
+  {
+    "id": "8",
+    "name": "Kaster",
+    "img": "/assets/img_pets/perro3.jpg",
+    "age": 2,
+    "status": 2,
+    "breed": 2,
+    "description": "Se extravio cerca del jardin botanico"
+  },
+  {
+    "id": "9",
+    "name": "Violeta",
+    "img": "/assets/img_pets/perro4.jpg",
+    "age": 2,
+    "status": 2,
+    "breed": 2,
+    "description": "Se extravio cerca del jardin botanico"
+  },
+  {
+    "id": "10",
+    "name": "Lucas",
+    "img": "/assets/img_pets/perro5.jpg",
+    "age": 2,
+    "status": 2,
+    "breed": 2,
+    "description": "Se extravio cerca del jardin botanico"
+  }
+]

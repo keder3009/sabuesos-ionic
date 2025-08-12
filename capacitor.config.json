@@ -1,0 +1,36 @@
+{
+  "plugins": {
+      "PushNotifications": {
+          "presentationOptions": [
+              "badge",
+              "sound",
+              "alert"
+          ]
+      },
+      "GoogleAuth": {
+          "scopes": [
+              "profile",
+              "email"
+          ],
+          "serverClientId": "909651562334-o2jsv9m3sdpkq11ng034bfsh2m7b5fb1.apps.googleusercontent.com",
+          "forceCodeForRefreshToken": false
+      }
+  },
+  "appId": "co.com.sabuesos.newapp",
+  "appName": "sabuesos",
+  "webDir": "www",
+  "server": {
+      "androidScheme": "https"
+  },
+  "cordova": {
+      "preferences": {
+          "ScrollEnabled": false,
+          "BackupWebStorage": "none",
+          "SplashMaintainAspectRatio": true,
+          "FadeSplashScreenDuration": 300,
+          "SplashShowOnlyFirstTime": false,
+          "SplashScreen": "screen",
+          "SplashScreenDelay": 3000
+      }
+  }
+}

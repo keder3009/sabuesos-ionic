@@ -1,0 +1,166 @@
+<app-header></app-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+  </ion-header>
+
+  <ng-container *ngIf="isRegularUser; else entityProfile">
+    <form class="form" [formGroup]="userForm" (ngSubmit)="onSubmit()" *ngIf="userInfo">
+      <ion-list-header class="center mb-1">
+        <h1>Mi cuenta</h1>
+      </ion-list-header>
+      <ion-avatar>
+        <ion-img [src]="userInfo.picture.url" class="card-image" *ngIf="userInfo.picture; else nofound"></ion-img>
+        <ng-template #nofound>
+          <ion-img src="/assets/logo.jpeg" class="card-image"></ion-img>
+        </ng-template>
+      </ion-avatar>
+      <ion-item class="mt-2">
+        <ion-input label="Nombre" labelPlacement="floating" placeholder="Ingrese su nombre" clearInput="true"
+          type="text" formControlName="name"></ion-input>
+      </ion-item>
+      <div class="content-date">
+        <ion-label class="text-date">Fecha Nacimiento</ion-label>
+        <ion-item>
+          <ion-input color="primary" placeholder="dd" clearInput="true"
+            type="text" formControlName="birthDateUserDay" maxlength="2" class="input-date"></ion-input>
+          <ion-input placeholder="mm" clearInput="true" type="text" formControlName="birthDateUserMonth" maxlength="2"
+            class="input-date"></ion-input>
+          <ion-input placeholder="aaaa" clearInput="true" type="text" formControlName="birthDateUserYear" maxlength="4"
+            minlength="4" class="input-date"></ion-input>
+        </ion-item>
+      </div>
+      <ion-item>
+        <ion-input label="Correo" labelPlacement="floating" color="primary" clearInput="true" type="email"
+          formControlName="email"></ion-input>
+      </ion-item>
+      <ion-item class="mb-2">
+        <ion-select label="Departamento" color="primary" formControlName="city">
+          <ion-select-option *ngFor="let city of cities" [value]="city.departamento">{{city.departamento}}
+          </ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-label color="primary"><strong>¿Tienes un animal de compañia?</strong></ion-label>
+      </ion-item>
+      <ion-item (click)="checkSelected()">
+        <ion-label color="primary">Si</ion-label>
+        <ion-checkbox slot="end" formControlName="hasPet" [checked]="checkData.selected">
+        </ion-checkbox>
+      </ion-item>
+      <div class="mb-2" *ngIf="petInfo || savePetInfo">
+        <ion-item>
+          <ion-input label="Nombre de la Mascota" labelPlacement="floating" color="primary" clearInput="true" type="text"
+            formControlName="namePet"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-select label="Tipo" color="primary" formControlName="typePet">
+            <ion-select-option *ngFor='let petSelector of petSelectList'
+              [value]='petSelector.value'>{{petSelector.label}}</ion-select-option>
+          </ion-select>
+        </ion-item>
+        <ion-item>
+          <ion-input label="Raza" labelPlacement="floating" color="primary" clearInput="true" type="text"
+            formControlName="race"></ion-input>
+        </ion-item>
+        <div class="content-date">
+          <ion-label class="text-date">Fecha Nacimiento</ion-label>
+          <ion-item>
+            <ion-input color="primary" placeholder="dd" clearInput="true"
+              type="text" formControlName="birthDatePetDay" maxlength="2" class="input-date"></ion-input>
+            <ion-input placeholder="mm" clearInput="true" type="text" formControlName="birthDatePetMonth" maxlength="2"
+              class="input-date"></ion-input>
+            <ion-input placeholder="aaaa" clearInput="true" type="text" formControlName="birthDatePetYear" maxlength="4"
+              minlength="4" class="input-date"></ion-input>
+          </ion-item>
+        </div>
+      </div>
+
+      <ng-container *ngIf="temporalImages && temporalImages.length > 0">
+        <ion-list *ngFor="let file of temporalImages; let i = index">
+          <div class="viewFiles">
+            <!-- <ion-span class="file-name">
+              {{file.name}}
+            </ion-span> -->
+            <ion-button (click)="deleteFile(i)">X</ion-button>
+          </div>
+        </ion-list>
+      </ng-container>
+
+      <ion-item class="custom-input-file mb-1" *ngIf="temporalImages.length < 1">
+        <input type="file" accept="image/png, image/gif, image/jpeg" class="input-file" name="inputFile"
+          (change)="getPictureToFile($event)">
+      </ion-item>
+      <ion-text color="primary" class="text-upload" *ngIf="temporalImages.length < 1"><strong>FOTO</strong></ion-text>
+      <ion-button color="tertiary" expand="block" type="submit">
+        <ion-text color="primary"><strong>Guardar</strong></ion-text>
+      </ion-button>
+    </form>
+  </ng-container>
+
+  <ng-template #entityProfile>
+    <form class="form" [formGroup]="entityForm" (ngSubmit)="onSubmit()" *ngIf="entityInfo">
+      <ion-list-header class="center mb-1">
+        <h1>Mi cuenta</h1>
+      </ion-list-header>
+      <ion-avatar>
+        <img src="/assets/logo.jpeg" />
+      </ion-avatar>
+      <ion-item class="mt-2">
+        <ion-input label="Nombre de la entidad" labelPlacement="floating" color="primary" autofocus clearInput="true"
+          type="text" formControlName="nameOrganization"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input label="NIT" labelPlacement="floating" color="primary" clearInput="true" type="text"
+          formControlName="NIT"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input label="Correo" labelPlacement="floating" color="primary" clearInput="true" type="email"
+          formControlName="email"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input label="Teléfono contacto" labelPlacement="floating" color="primary" clearInput="true" type="number"
+          formControlName="phone"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input label="Persona contacto" labelPlacement="floating" color="primary" clearInput="true" type="text"
+          formControlName="contactPerson"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-select label="Departamento" labelPlacement="floating" color="primary" formControlName="city">
+          <ion-select-option *ngFor="let city of cities" [value]="city.departamento">{{city.departamento}}
+          </ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-input label="Dirección entidad" labelPlacement="floating" color="primary" clearInput="true" type="text"
+          formControlName="address"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input label="Sitio Web" labelPlacement="floating" color="primary" clearInput="true" type="text"
+          formControlName="webpage"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input label="Enlace a redes sociales" labelPlacement="floating" color="primary" clearInput="true" type="text"
+          formControlName="socialNetworks"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input label="Enlace a Facebook" labelPlacement="floating" color="primary" clearInput="true" type="text"
+          formControlName="facebook"></ion-input>
+      </ion-item>
+      <ion-item class="mb-1">
+        <ion-input label="Enlace a Twitter" labelPlacement="floating" color="primary" clearInput="true" type="text"
+          formControlName="twitter"></ion-input>
+      </ion-item>
+      <ion-button color="secondary" expand="block" type="submit">
+        <ion-text color="primary"><strong>Guardar</strong></ion-text>
+      </ion-button>
+    </form>
+  </ng-template>
+  <div class="form ion-margin-top">
+    <ion-button color="danger" expand="block" (click)="deleteAccount()">
+      <ion-text color="light"><strong>Eliminar cuenta</strong></ion-text>
+    </ion-button>
+  </div>
+
+</ion-content>

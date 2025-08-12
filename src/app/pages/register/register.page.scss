@@ -1,0 +1,29 @@
+.form {
+  width: 70%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.logo {
+  width: 30%;
+  height: 30%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.info-data {
+  background-color: white !important;
+}
+
+.small-text {
+  height: 52px;
+  display: flex;
+  align-items: center;
+}
+
+
+::ng-deep {
+  ion-modal {
+    --background: white !important
+  }
+}

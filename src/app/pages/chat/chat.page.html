@@ -1,0 +1,40 @@
+<app-header [routePrevious]="'/main-tab/my-chats'"></app-header>
+<ion-content [fullscreen]="true" class="auth-form">
+  <ion-header collapse="condense">
+  </ion-header>
+  <ion-grid *ngIf="currentUser" class="chat-container">
+    <ion-text color="medium" text-center>
+      <p>Se ha unido al chat como {{ currentUser.name }}</p>
+    </ion-text>
+    <ng-container *ngIf="messages && messages.length > 0">
+      <ion-row *ngFor="let chatPrevious of messages">
+        <ion-col size="9" class="message-interview other-message" *ngIf="currentUser.email!==chatPrevious.idUser">
+          <span>{{chatPrevious.message}}</span>
+          <br>
+          <div class="time" text-right><br>{{chatPrevious.createdAt}}</div>
+        </ion-col>
+        <ion-col offset="3" size="9" class="message-owner my-message" *ngIf="currentUser.email===chatPrevious.idUser">
+          <span>{{chatPrevious.message}}</span>
+          <div class="time" text-right><br>{{chatPrevious.createdAt}}</div>
+          <br>
+        </ion-col>
+      </ion-row>
+    </ng-container>
+
+  </ion-grid>
+</ion-content>
+<ion-footer>
+  <ion-toolbar color="light">
+    <ion-row align-items-center>
+      <ion-col size="10">
+        <ion-textarea auto-grow class="message-input" rows="1" [(ngModel)]="message"></ion-textarea>
+      </ion-col>
+      <ion-col size="2">
+        <ion-button expand="block" fill="clear" color="terciary" [disabled]="message === ''" class="msg-btn"
+          (click)="sendMessage()">
+          <ion-icon [name]="iconChat" slot="icon-only"></ion-icon>
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-toolbar>
+</ion-footer>
