@@ -151,15 +151,15 @@ export class CreateAdModalComponent implements OnInit {
 
         const adData: Omit<IAdvertisement, 'id'> = {
           type: formValue.type,
-          title: formValue.title || undefined,
-          description: formValue.description || undefined,
+          title: formValue.title || "",
+          description: formValue.description || "",
           mediaUrl,
           mediaType: formValue.mediaType,
-          link: formValue.link || undefined,
-          order: formValue.order || undefined,
+          link: formValue.link || "",
+          order: formValue.order || "",
           active: formValue.active,
-          waitTime: formValue.waitTime,
-          skipAfter: formValue.skipAfter || undefined,
+          waitTime: formValue.waitTime || "",
+          skipAfter: formValue.skipAfter || "",
           createdAt: this.isEdit ? this.advertisement!.createdAt : new Date(),
           updatedAt: new Date()
         };
