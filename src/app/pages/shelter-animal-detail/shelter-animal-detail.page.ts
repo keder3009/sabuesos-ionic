@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ActionSheetController, NavController } from '@ionic/angular';
 import { Share } from '@capacitor/share';
+import { Browser } from '@capacitor/browser';
 import { AlertService } from 'src/app/services/alert.service';
 import { LoadingService } from 'src/app/services/loading.service';
 import { ShelterAnimalService } from 'src/app/services/shelter-animal.service';
@@ -174,8 +175,8 @@ export class ShelterAnimalDetailPage implements OnInit {
       buttons.push({
         text: 'WhatsApp',
         icon: 'logo-whatsapp',
-        handler: () => {
-          window.open(`https://wa.me/${this.animal.shelter.whatsapp}`, '_blank');
+        handler: async () => {
+          await Browser.open({ url: `https://wa.me/${this.animal.shelter.whatsapp}` });
         }
       });
     }
@@ -184,8 +185,8 @@ export class ShelterAnimalDetailPage implements OnInit {
       buttons.push({
         text: 'Instagram',
         icon: 'logo-instagram',
-        handler: () => {
-          window.open(this.animal.shelter.instagram, '_blank');
+        handler: async () => {
+          await Browser.open({ url: this.animal.shelter.instagram });
         }
       });
     }
@@ -194,8 +195,8 @@ export class ShelterAnimalDetailPage implements OnInit {
       buttons.push({
         text: 'Sitio web',
         icon: 'globe-outline',
-        handler: () => {
-          window.open(this.animal.shelter.websiteUrl, '_blank');
+        handler: async () => {
+          await Browser.open({ url: this.animal.shelter.websiteUrl });
         }
       });
     }
@@ -205,7 +206,12 @@ export class ShelterAnimalDetailPage implements OnInit {
         text: 'Email',
         icon: 'mail-outline',
         handler: () => {
-          window.open(`mailto:${this.animal.shelter.contactEmail}`, '_blank');
+          const link = document.createElement('a');
+          link.href = `mailto:${this.animal.shelter.contactEmail}`;
+          link.target = '_system';
+          document.body.appendChild(link);
+          link.click();
+          document.body.removeChild(link);
         }
       });
     }
@@ -215,7 +221,12 @@ export class ShelterAnimalDetailPage implements OnInit {
         text: 'Llamar',
         icon: 'call-outline',
         handler: () => {
-          window.open(`tel:${this.animal.shelter.contactPhone}`, '_blank');
+          const link = document.createElement('a');
+          link.href = `tel:${this.animal.shelter.contactPhone}`;
+          link.target = '_system';
+          document.body.appendChild(link);
+          link.click();
+          document.body.removeChild(link);
         }
       });
     }
