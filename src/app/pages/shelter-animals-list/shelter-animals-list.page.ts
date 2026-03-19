@@ -84,8 +84,9 @@ export class ShelterAnimalsListPage implements OnInit {
             this.animalList = [];
             this.hasMorePages = true;
         }
-        try {
-            const response: IShelterAnimalsResponse = await this.shelterAnimalService.getShelterAnimals(this.currentPage, this.pageSize).toPromise();
+        // try {
+            const response: any =  this.shelterAnimalService.getShelterAnimals(this.currentPage, this.pageSize)
+            // const response: IShelterAnimalsResponse = await this.shelterAnimalService.getShelterAnimals(this.currentPage, this.pageSize).toPromise();
             if (reset) {
                 this.animalList = response.data;
             } else {
@@ -101,12 +102,10 @@ export class ShelterAnimalsListPage implements OnInit {
             this.applyFilters();
             this.showData = true;
             await this.loadingService.hideLoading();
-        } catch (error) {
-            await this.loadingService.hideLoading();
-            this.alertService.presentToast('Fallo cargando los animales, por favor intentar nuevamente');
-        }
-
-
+        // } catch (error) {
+        //     await this.loadingService.hideLoading();
+        //     this.alertService.presentToast('Fallo cargando los animales, por favor intentar nuevamente');
+        // }
     }
 
     /**

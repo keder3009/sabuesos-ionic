@@ -1,0 +1,117 @@
+<ion-header [translucent]="false">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="goBack()">
+        <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Solicitud de Adopción</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" *ngIf="animal">
+  <ion-grid fixed class="ion-padding">
+    <!-- Animal Info -->
+    <ion-row>
+      <ion-col size="12">
+        <ion-card>
+          <ion-card-header>
+            <ion-card-title>{{ animal.name }}</ion-card-title>
+            <ion-card-subtitle>{{ animal?.species?.label }} - {{ animal?.breed?.label }}</ion-card-subtitle>
+          </ion-card-header>
+          <ion-card-content>
+            <ion-text color="medium">
+              <p>{{ animal?.shelter?.name }}</p>
+            </ion-text>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+
+    <!-- Form -->
+    <ion-row>
+      <ion-col size="12">
+        <ion-card>
+          <ion-card-header>
+            <ion-card-title>Tus Datos</ion-card-title>
+            <ion-card-subtitle>Completa la información para continuar</ion-card-subtitle>
+          </ion-card-header>
+          <ion-card-content>
+            <ion-list>
+              <!-- Name -->
+              <ion-item>
+                <ion-label position="stacked">Nombre completo <ion-text color="danger">*</ion-text></ion-label>
+                <ion-input 
+                  type="text" 
+                  [(ngModel)]="name" 
+                  placeholder="Ej. Juan Pérez"
+                  required
+                ></ion-input>
+              </ion-item>
+
+              <!-- Email -->
+              <ion-item>
+                <ion-label position="stacked">Correo electrónico <ion-text color="danger">*</ion-text></ion-label>
+                <ion-input 
+                  type="email" 
+                  [(ngModel)]="email" 
+                  placeholder="ejemplo@correo.com"
+                  required
+                ></ion-input>
+              </ion-item>
+
+              <!-- Mobile -->
+              <ion-item>
+                <ion-label position="stacked">Teléfono móvil <ion-text color="danger">*</ion-text></ion-label>
+                <ion-input 
+                  type="tel" 
+                  [(ngModel)]="mobile" 
+                  placeholder="3001234567"
+                  required
+                ></ion-input>
+              </ion-item>
+
+              <!-- Birthdate -->
+              <ion-item>
+                <ion-label position="stacked">Fecha de nacimiento <ion-text color="danger">*</ion-text></ion-label>
+                <ion-input 
+                  type="date" 
+                  [(ngModel)]="birthdate" 
+                  required
+                ></ion-input>
+              </ion-item>
+            </ion-list>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+
+    <!-- Info -->
+    <ion-row>
+      <ion-col size="12">
+        <ion-text color="medium">
+          <p class="ion-text-center">
+            <small>
+              Serás redirigido a Sabuesos para completar el proceso de adopción
+            </small>
+          </p>
+        </ion-text>
+      </ion-col>
+    </ion-row>
+
+    <!-- Submit Button -->
+    <ion-row>
+      <ion-col size="12">
+        <ion-button 
+          expand="block" 
+          color="primary" 
+          (click)="submitAdoption()"
+          [disabled]="!isFormValid()"
+        >
+          <ion-icon slot="start" name="heart"></ion-icon>
+          Continuar con Adopción
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

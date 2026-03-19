@@ -158,16 +158,10 @@ export class ShelterAnimalDetailPage implements OnInit {
    * Show interest in adopting
    */
   showInterest() {
-    if (this.animal?.shelter?.whatsapp) {
-      const message = encodeURIComponent(`Hola, me interesa adoptar a ${this.animal.name}`);
-      window.open(`https://wa.me/${this.animal.shelter.whatsapp}?text=${message}`, '_blank');
-    } else if (this.animal?.shelter?.contactPhone) {
-      window.open(`tel:${this.animal.shelter.contactPhone}`, '_blank');
-    } else if (this.animal?.shelter?.contactEmail) {
-      window.open(`mailto:${this.animal.shelter.contactEmail}?subject=Interés en adoptar a ${this.animal.name}`, '_blank');
-    } else {
-      this.alertService.infoAlert('No hay información de contacto disponible.');
-    }
+    // Navegar al formulario de adopción
+    this.navCtrl.navigateForward(['main-tab/shelter-adoption-form', this.animal.id], {
+      state: { animal: this.animal }
+    });
   }
 
   /**

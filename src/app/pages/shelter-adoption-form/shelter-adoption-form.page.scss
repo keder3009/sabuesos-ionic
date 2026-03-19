@@ -1,0 +1,20 @@
+ion-card {
+  --background: white;
+  margin-bottom: 16px;
+}
+
+ion-item {
+  --background: white;
+  
+  ion-label {
+    margin-bottom: 8px;
+  }
+}
+
+ion-input, ion-textarea {
+  margin-top: 4px;
+}
+
+small {
+  font-size: 0.875rem;
+}

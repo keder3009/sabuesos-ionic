@@ -225,6 +225,13 @@ const routes: Routes = [
           ),
       },
       {
+        path: 'shelter-adoption-form/:id',
+        loadChildren: () =>
+          import('../shelter-adoption-form/shelter-adoption-form.module').then(
+            (m) => m.ShelterAdoptionFormPageModule
+          ),
+      },
+      {
         path: 'log-out',
         loadChildren: () =>
           import('../log-out/log-out.module').then(
