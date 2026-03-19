@@ -211,6 +211,20 @@ const routes: Routes = [
           ),
       },
       {
+        path: 'shelter-animals-list',
+        loadChildren: () =>
+          import('../shelter-animals-list/shelter-animals-list.module').then(
+            (m) => m.ShelterAnimalsListPageModule
+          ),
+      },
+      {
+        path: 'shelter-animal-detail/:id',
+        loadChildren: () =>
+          import('../shelter-animal-detail/shelter-animal-detail.module').then(
+            (m) => m.ShelterAnimalDetailPageModule
+          ),
+      },
+      {
         path: 'log-out',
         loadChildren: () =>
           import('../log-out/log-out.module').then(

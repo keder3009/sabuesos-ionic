@@ -1,0 +1,54 @@
+.text-small {
+  font-size: 0.875rem;
+}
+
+ion-card {
+  margin: 8px 0;
+  --background: white;
+
+  ion-img {
+    height: 200px;
+    object-fit: cover;
+    display: block;
+    width: 100%;
+  }
+}
+
+ion-card-title {
+  font-size: 1rem;
+  margin-bottom: 4px;
+}
+
+ion-card-subtitle {
+  font-size: 0.8rem;
+}
+
+ion-card-content p {
+  margin: 4px 0;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+ion-card-content ion-icon {
+  font-size: 1rem;
+}
+
+// Filter styles
+ion-item {
+  --background: white;
+  
+  ion-label {
+    font-weight: 500;
+  }
+}
+
+ion-select {
+  width: 100%;
+  max-width: 100%;
+}
+
+.filter-card {
+  margin-bottom: 16px;
+  --background: white;
+}

@@ -1,0 +1,206 @@
+<ion-header [translucent]="false">
+  <ion-toolbar>
+    <ion-buttons class="position-buttons-main">
+      <ion-img src="/assets/logo-header-text.png" class="logo-header"></ion-img>
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-refresher slot="fixed" (ionRefresh)="handleRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+  <ion-list>
+    <ion-item class="mb-1 w-100">
+      <app-slides [option]="'advertising'"></app-slides>
+    </ion-item>
+
+    <ion-item>
+      <ion-grid fixed>
+        <ion-row>
+          <ion-col size="12" class="ion-text-center ion-padding">
+            <ion-text color="primary">
+              <h2><strong>Mascotas en Adopción</strong></h2>
+            </ion-text>
+            <ion-text color="medium">
+              <p>Encuentra tu compañero ideal</p>
+            </ion-text>
+          </ion-col>
+        </ion-row>
+
+        <!-- Filters Toggle Button -->
+        <ion-row>
+          <ion-col size="12">
+            <ion-button expand="block" fill="outline" (click)="toggleFilters()">
+              <ion-icon slot="start" name="funnel-outline"></ion-icon>
+              {{ showFilters ? 'Ocultar Filtros' : 'Ocultar Filtros' }}
+              <ion-icon slot="end" [name]="showFilters ? 'chevron-up' : 'chevron-down'"></ion-icon>
+            </ion-button>
+          </ion-col>
+        </ion-row>
+
+        <!-- Filters Panel -->
+        <ion-row *ngIf="showFilters">
+          <ion-col size="12">
+            <ion-card>
+              <ion-card-content>
+                
+                <!-- Species Filter -->
+                <ion-item>
+                  <ion-select label="Especies" [(ngModel)]="filters.species" multiple="true" (ionChange)="onFilterChange()">
+                    <ion-select-option [value]="species.id" *ngFor="let species of availableSpecies">
+                      {{ species?.label }}
+                    </ion-select-option>
+                  </ion-select>
+                </ion-item>
+
+                <!-- Sex Filter -->
+                <ion-item>
+                  <ion-select label="Sexo" [(ngModel)]="filters.sex" multiple="true" (ionChange)="onFilterChange()">
+                    <ion-select-option [value]="sex.id" *ngFor="let sex of availableSexes">
+                      {{ sex?.label }}
+                    </ion-select-option>
+                  </ion-select>
+                </ion-item>
+
+                <!-- Size Filter -->
+                <ion-item>
+                  <ion-select label="Tamaños" [(ngModel)]="filters.size" multiple="true" (ionChange)="onFilterChange()">
+                    <ion-select-option [value]="size.id" *ngFor="let size of availableSizes">
+                      {{ size?.label }}
+                    </ion-select-option>
+                  </ion-select>
+                </ion-item>
+
+                <!-- Temperament Filter -->
+                <ion-item>
+                  <ion-select label="Temperamentos" [(ngModel)]="filters.temperament" multiple="true" (ionChange)="onFilterChange()">
+                    <ion-select-option [value]="temperament.id" *ngFor="let temperament of availableTemperaments">
+                      {{ temperament?.label }}
+                    </ion-select-option>
+                  </ion-select>
+                </ion-item>
+
+                <!-- Shelter Filter -->
+                <ion-item>
+                  <ion-select label="Entidades" [(ngModel)]="filters.shelter" multiple="true" (ionChange)="onFilterChange()">
+                    <ion-select-option [value]="shelter.id" *ngFor="let shelter of availableShelters">
+                      {{ shelter?.name }}
+                    </ion-select-option>
+                  </ion-select>
+                </ion-item>
+
+                <!-- Breed Filter -->
+                <ion-item>
+                  <ion-select label="Razas" [(ngModel)]="filters.breed" multiple="true" (ionChange)="onFilterChange()">
+                    <ion-select-option [value]="breed.id" *ngFor="let breed of availableBreeds">
+                      {{ breed?.label }}
+                    </ion-select-option>
+                  </ion-select>
+                </ion-item>
+
+                <!-- Age Filters -->
+                <ion-item>
+                  <ion-input
+                    label="Edad mínima (meses)"
+                    type="number" 
+                    [(ngModel)]="filters.minAge" 
+                    (ionChange)="onFilterChange()"
+                    placeholder="0"
+                  ></ion-input>
+                </ion-item>
+
+                <ion-item>
+                  <ion-input
+                    label="Edad máxima (meses)"
+                    type="number" 
+                    [(ngModel)]="filters.maxAge" 
+                    (ionChange)="onFilterChange()"
+                    placeholder="999"
+                  ></ion-input>
+                </ion-item>
+
+                <ion-item>
+                  <ion-select label="Ordenar por" [(ngModel)]="filters.sortBy" (ionChange)="onFilterChange()">
+                    <ion-select-option value="approxAgeMonths">Edad (meses)</ion-select-option>
+                    <ion-select-option value="name">Nombre</ion-select-option>
+                    <ion-select-option value="createdAt">Fecha de creación</ion-select-option>
+                    <ion-select-option value="id">ID</ion-select-option>
+                  </ion-select>
+                </ion-item>
+
+                <ion-item>
+                  <ion-select label="Dirección" [(ngModel)]="filters.sortDirection" (ionChange)="onFilterChange()">
+                    <ion-select-option value="asc">Asc</ion-select-option>
+                    <ion-select-option value="desc">Desc</ion-select-option>
+                  </ion-select>
+                </ion-item>
+
+                <!-- Clear Filters Button -->
+                <ion-button expand="block" fill="clear" (click)="clearFilters()">
+                  Limpiar Filtros
+                </ion-button>
+
+              </ion-card-content>
+            </ion-card>
+          </ion-col>
+        </ion-row>
+
+        <!-- Results -->
+        <ion-row>
+          <ion-col 
+            size="6" 
+            size-lg="3" 
+            size-md="4" 
+            size-sm="6" 
+            *ngFor="let animal of filteredAnimals"
+          >
+            <ion-card (click)="goToAnimalDetail(animal)" button>
+              <ion-img [src]="getPrimaryPhoto(animal)"></ion-img>
+              <ion-card-header>
+                <ion-card-title class="text-small">{{ animal?.name }}</ion-card-title>
+                <ion-card-subtitle class="text-small">
+                  {{ animal?.species?.label }} - {{ animal?.breed?.label }}
+                </ion-card-subtitle>
+              </ion-card-header>
+              <ion-card-content>
+                <ion-text class="text-small">
+                  <p>
+                    <ion-icon name="location-outline" color="primary"></ion-icon>
+                    {{ animal?.location }}
+                  </p>
+                  <p>
+                    <ion-icon name="home-outline" color="primary"></ion-icon>
+                    {{ animal?.shelter?.name }}
+                  </p>
+                </ion-text>
+              </ion-card-content>
+            </ion-card>
+          </ion-col>
+        </ion-row>
+
+        <ion-row *ngIf="showData && filteredAnimals.length === 0">
+          <ion-col size="12" class="ion-text-center ion-padding">
+            <ion-text color="medium">
+              <p>No hay mascotas disponibles con los filtros seleccionados.</p>
+            </ion-text>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
+  </ion-list>
+
+  <!-- Infinite Scroll -->
+  <ion-infinite-scroll 
+    threshold="100px" 
+    (ionInfinite)="loadMore($event)"
+    [disabled]="!hasMorePages"
+  >
+    <ion-infinite-scroll-content
+      loadingSpinner="bubbles"
+      loadingText="Cargando más mascotas...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content>

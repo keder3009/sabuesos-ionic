@@ -1,0 +1,245 @@
+<ion-header [translucent]="false">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button (click)="goBack()"></ion-back-button>
+    </ion-buttons>
+    <ion-title *ngIf="animal">{{ animal.name }}</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="shareAnimal()" *ngIf="animal">
+        <ion-icon slot="icon-only" name="share-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" *ngIf="animal">
+  <!-- Photo Gallery -->
+  <div class="photo-container">
+    <ion-img [src]="getCurrentPhoto()"></ion-img>
+    
+    <ion-button 
+      class="nav-button nav-button-left" 
+      fill="clear" 
+      *ngIf="animal.photos?.length > 1"
+      (click)="previousPhoto()"
+    >
+      <ion-icon slot="icon-only" name="chevron-back-outline"></ion-icon>
+    </ion-button>
+    
+    <ion-button 
+      class="nav-button nav-button-right" 
+      fill="clear" 
+      *ngIf="animal.photos?.length > 1"
+      (click)="nextPhoto()"
+    >
+      <ion-icon slot="icon-only" name="chevron-forward-outline"></ion-icon>
+    </ion-button>
+
+    <div class="photo-badge" *ngIf="animal.photos?.length > 1">
+      Foto Principal
+    </div>
+
+    <div class="photo-counter" *ngIf="animal.photos?.length > 1">
+      {{ currentPhotoIndex + 1 }} / {{ animal.photos.length }}
+    </div>
+  </div>
+
+  <!-- Basic Info -->
+  <ion-grid fixed class="ion-padding">
+    <ion-row>
+      <ion-col size="12">
+        <ion-text color="primary">
+          <h1>{{ animal.name }}</h1>
+        </ion-text>
+      </ion-col>
+    </ion-row>
+
+    <!-- Info Cards -->
+    <ion-row>
+      <ion-col size="6" size-md="3">
+        <ion-card class="info-card">
+          <ion-card-content>
+            <ion-text color="medium">
+              <p class="info-label">Especie:</p>
+            </ion-text>
+            <ion-text color="primary">
+              <p class="info-value">{{ animal?.species?.label || 'N/A' }}</p>
+            </ion-text>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+
+      <ion-col size="6" size-md="3">
+        <ion-card class="info-card">
+          <ion-card-content>
+            <ion-text color="medium">
+              <p class="info-label">Raza:</p>
+            </ion-text>
+            <ion-text color="primary">
+              <p class="info-value">{{ animal?.breed?.label || 'N/A' }}</p>
+            </ion-text>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+
+      <ion-col size="6" size-md="3">
+        <ion-card class="info-card">
+          <ion-card-content>
+            <ion-text color="medium">
+              <p class="info-label">Sexo:</p>
+            </ion-text>
+            <ion-text color="primary">
+              <p class="info-value">{{ animal?.sex?.label || 'N/A' }}</p>
+            </ion-text>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+
+      <ion-col size="6" size-md="3">
+        <ion-card class="info-card">
+          <ion-card-content>
+            <ion-text color="medium">
+              <p class="info-label">Tamaño:</p>
+            </ion-text>
+            <ion-text color="primary">
+              <p class="info-value">{{ animal?.size?.label || 'N/A' }}</p>
+            </ion-text>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+
+      <ion-col size="6" size-md="3">
+        <ion-card class="info-card">
+          <ion-card-content>
+            <ion-text color="medium">
+              <p class="info-label">Color:</p>
+            </ion-text>
+            <ion-text color="primary">
+              <p class="info-value">{{ animal?.color?.label || 'N/A' }}</p>
+            </ion-text>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+
+      <ion-col size="6" size-md="3">
+        <ion-card class="info-card">
+          <ion-card-content>
+            <ion-text color="medium">
+              <p class="info-label">Temperamento:</p>
+            </ion-text>
+            <ion-text color="primary">
+              <p class="info-value">{{ animal?.temperament?.label || 'N/A' }}</p>
+            </ion-text>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+
+      <ion-col size="6" size-md="3">
+        <ion-card class="info-card">
+          <ion-card-content>
+            <ion-text color="medium">
+              <p class="info-label">Edad:</p>
+            </ion-text>
+            <ion-text color="primary">
+              <p class="info-value">{{ getAge() }}</p>
+            </ion-text>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+
+    <!-- Historia del animal -->
+    <ion-row>
+      <ion-col size="12">
+        <ion-card>
+          <ion-card-header>
+            <ion-card-title>Historia del animal</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <ion-text>
+              <p>{{ animal?.behavior || 'Sin información' }}</p>
+            </ion-text>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+
+    <!-- Entidad -->
+    <ion-row>
+      <ion-col size="12">
+        <ion-card>
+          <ion-card-header>
+            <ion-card-title>
+              <ion-icon name="location-outline" color="primary"></ion-icon>
+              Entidad
+            </ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <ion-text>
+              <p><strong>{{ animal?.shelter?.name || 'N/A' }}</strong></p>
+              <p>{{ animal?.shelter?.cityName || '' }}{{ animal?.shelter?.cityName && animal?.shelter?.department ? ' - ' : '' }}{{ animal?.shelter?.department || '' }}</p>
+            </ion-text>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+
+    <!-- Necesidades -->
+    <ion-row>
+      <ion-col size="12">
+        <ion-card>
+          <ion-card-header>
+            <ion-card-title>Necesidades</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <ion-text>
+              <p>{{ animal?.animalNeeds || 'Sin información' }}</p>
+            </ion-text>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+
+    <!-- Términos de aceptación -->
+    <ion-row *ngIf="animal.acceptanceTerms">
+      <ion-col size="12">
+        <ion-card>
+          <ion-card-header>
+            <ion-card-title>Términos de aceptación</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <ion-text>
+              <p>{{ animal.acceptanceTerms }}</p>
+            </ion-text>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+
+    <!-- Action Buttons -->
+    <ion-row>
+      <ion-col size="12" size-md="6">
+        <ion-button expand="block" color="primary" (click)="showInterest()">
+          <ion-icon slot="start" name="heart"></ion-icon>
+          Me Interesa Adoptar
+        </ion-button>
+      </ion-col>
+      <ion-col size="12" size-md="6">
+        <ion-button expand="block" fill="outline" color="dark" (click)="showContactOptions()">
+          <ion-icon slot="start" name="call-outline"></ion-icon>
+          Contactar
+        </ion-button>
+      </ion-col>
+    </ion-row>
+
+    <!-- Back to List Button -->
+    <ion-row>
+      <ion-col size="12">
+        <ion-button expand="block" fill="outline" color="medium" (click)="goBack()">
+          <ion-icon slot="start" name="arrow-back"></ion-icon>
+          Ver Todas las Mascotas
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
