@@ -1,9 +1,11 @@
 import { Component, EventEmitter, Input, OnInit, Output, SimpleChanges, ChangeDetectorRef } from '@angular/core';
+import { NavController } from '@ionic/angular';
 import { LoadingService } from 'src/app/services/loading.service';
 import { ReportService } from 'src/app/services/report.service';
 import { IAdReport, IReport } from 'src/app/shared/types/report.interface';
 import { AdmobService } from "src/app/services/admod.service";
 import { ResponseInitNativeAdss } from 'capacitor-admob-keder';
+import { TABS_ROOT } from 'src/app/constants/tab-pages';
 
 
 @Component({
@@ -19,7 +21,13 @@ export class SegmentComponent implements OnInit {
   public showData = false;
   public adDataList: ResponseInitNativeAdss[] = [];
 
-  constructor(private reportService: ReportService, private loadingService: LoadingService, private changeDetectorRef: ChangeDetectorRef, private admobService: AdmobService) {
+  constructor(
+    private reportService: ReportService,
+    private loadingService: LoadingService,
+    private changeDetectorRef: ChangeDetectorRef,
+    private admobService: AdmobService,
+    private navController: NavController
+  ) {
   }
 
   async ngOnInit() {
@@ -48,6 +56,13 @@ export class SegmentComponent implements OnInit {
   segmentChanged(event: any) {
     this.activedSegment = event.detail.value;
     this.typeReportList = event.detail.value;
+  }
+
+  /**
+   * Navigate to adoptions list page
+   */
+  navigateToAdoptions() {
+    this.navController.navigateForward('/' + TABS_ROOT + '/shelter-animals-list');
   }
 
   // async handleRefresh(event: any) {

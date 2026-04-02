@@ -63,13 +63,13 @@ export class CreateReportPage implements OnInit {
   public optionTypeReport: any[] = [
     { value: 0, label: 'Extraviado' },
     { value: 1, label: 'Encontrado' },
-    { value: 2, label: 'Adopción' }
+    // { value: 2, label: 'Adopción' }
   ];
 
   public optionTypeReportEntities: any[] = [
     { value: 0, label: 'Extraviado' },
     { value: 1, label: 'Encontrado' },
-    { value: 2, label: 'Adopción' }
+    // { value: 2, label: 'Adopción' }
   ];
   public isEntity: boolean;
 
