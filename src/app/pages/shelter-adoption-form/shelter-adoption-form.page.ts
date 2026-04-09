@@ -3,6 +3,10 @@ import { Router } from '@angular/router';
 import { NavController } from '@ionic/angular';
 import { AlertService } from 'src/app/services/alert.service';
 import { IShelterAnimal } from 'src/app/shared/types/shelter-animal.interface';
+import { AuthService } from 'src/app/services/auth.service';
+import { UserService } from 'src/app/services/user.service';
+import { IUser } from 'src/app/shared/types/user.interface';
+import { LoadingService } from 'src/app/services/loading.service';
 
 @Component({
   selector: 'app-shelter-adoption-form',
@@ -21,10 +25,13 @@ export class ShelterAdoptionFormPage implements OnInit {
   constructor(
     private router: Router,
     private navCtrl: NavController,
-    private alertService: AlertService
+    private alertService: AlertService,
+    private authService: AuthService,
+    private userService: UserService,
+    private loadingService: LoadingService
   ) {}
 
-  ngOnInit() {
+  async ngOnInit() {
     // Get animal from navigation state
     const navigation = this.router.getCurrentNavigation();
     if (navigation?.extras?.state?.['animal']) {
@@ -36,7 +43,53 @@ export class ShelterAdoptionFormPage implements OnInit {
     if (!this.animal) {
       this.alertService.infoAlert('No se pudo cargar la información de la mascota.');
       this.goBack();
+      return;
     }
+    
+    // Auto-llenar datos si hay sesión activa
+    await this.loadUserData();
+  }
+  
+  /**
+   * Load user data if logged in
+   */
+  async loadUserData() {
+    try {
+      const isLoggedIn = await this.authService.isLoggedIn();
+      
+      if (isLoggedIn) {
+        await this.loadingService.showLoading('Cargando datos...');
+        
+        const userEmail = await this.authService.getUserActive();
+        const userData: IUser = await this.userService.getUserByEmail(userEmail);
+        
+        // Auto-llenar campos del formulario
+        if (userData) {
+          this.name = userData.name || '';
+          this.email = userData.email || '';
+          this.mobile = userData.phone || '';
+          this.birthdate = userData.birthDate ? this.formatDate(userData.birthDate) : '';
+        }
+        
+        await this.loadingService.hideLoading();
+      }
+    } catch (error) {
+      await this.loadingService.hideLoading();
+      console.error('Error al cargar datos del usuario:', error);
+      // No mostramos error, simplemente no llenamos los campos
+    }
+  }
+  
+  /**
+   * Format date to YYYY-MM-DD
+   */
+  private formatDate(date: Date | string): string {
+    if (!date) return '';
+    const d = new Date(date);
+    const year = d.getFullYear();
+    const month = String(d.getMonth() + 1).padStart(2, '0');
+    const day = String(d.getDate()).padStart(2, '0');
+    return `${year}-${month}-${day}`;
   }
 
   /**

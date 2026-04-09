@@ -7,6 +7,9 @@ import { AlertService } from 'src/app/services/alert.service';
 import { LoadingService } from 'src/app/services/loading.service';
 import { ShelterAnimalService } from 'src/app/services/shelter-animal.service';
 import { IShelterAnimal } from 'src/app/shared/types/shelter-animal.interface';
+import { AuthService } from 'src/app/services/auth.service';
+import { UserService } from 'src/app/services/user.service';
+import { IUser } from 'src/app/shared/types/user.interface';
 
 @Component({
   selector: 'app-shelter-animal-detail',
@@ -25,7 +28,9 @@ export class ShelterAnimalDetailPage implements OnInit {
     private alertService: AlertService,
     private navCtrl: NavController,
     private router: Router,
-    private actionSheetCtrl: ActionSheetController
+    private actionSheetCtrl: ActionSheetController,
+    private authService: AuthService,
+    private userService: UserService
   ) {}
 
   async ngOnInit() {
@@ -158,11 +163,61 @@ export class ShelterAnimalDetailPage implements OnInit {
   /**
    * Show interest in adopting
    */
-  showInterest() {
-    // Navegar al formulario de adopción
-    this.navCtrl.navigateForward(['main-tab/shelter-adoption-form', this.animal.id], {
-      state: { animal: this.animal }
-    });
+  async showInterest() {
+    try {
+      const isLoggedIn = await this.authService.isLoggedIn();
+      
+      if (isLoggedIn) {
+        await this.loadingService.showLoading('Enviando solicitud...');
+        
+        const userEmail = await this.authService.getUserActive();
+        const userData: IUser = await this.userService.getUserByEmail(userEmail);
+        
+        if (!userData.name || !userData.email) {
+          await this.loadingService.hideLoading();
+          this.alertService.infoAlert('Por favor completa tu perfil antes de solicitar una adopción.');
+          return;
+        }
+        
+        const baseUrl = 'https://sabuesos.com.co';
+        const animalId = this.animal.id;
+        
+        const payload = {
+          name: userData.name,
+          email: userData.email,
+          mobile: userData.phone || '', // Incluir teléfono del perfil
+          birthdate: userData.birthDate ? this.formatDate(userData.birthDate) : ''
+        };
+        
+        const json = JSON.stringify(payload);
+        const b64 = btoa(unescape(encodeURIComponent(json)));
+        
+        const url = `${baseUrl}/webapp/${animalId}/${encodeURIComponent(b64)}`;
+        
+        await this.loadingService.hideLoading();
+        
+        window.open(url, '_blank');
+        
+        this.alertService.presentToast('Solicitud enviada exitosamente');
+      } else {
+        this.navCtrl.navigateForward(['main-tab/shelter-adoption-form', this.animal.id], {
+          state: { animal: this.animal }
+        });
+      }
+    } catch (error) {
+      await this.loadingService.hideLoading();
+      console.error('Error al procesar adopción:', error);
+      this.alertService.infoAlert('Ocurrió un error al procesar la solicitud.');
+    }
+  }
+  
+  private formatDate(date: Date | string): string {
+    if (!date) return '';
+    const d = new Date(date);
+    const year = d.getFullYear();
+    const month = String(d.getMonth() + 1).padStart(2, '0');
+    const day = String(d.getDate()).padStart(2, '0');
+    return `${year}-${month}-${day}`;
   }
 
   /**
