@@ -12,4 +12,5 @@ export interface IUser {
     password: string;
     hasPet?: boolean;
     locality?: string;
+    phone?: string;
 }
